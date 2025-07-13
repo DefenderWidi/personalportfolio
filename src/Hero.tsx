@@ -4,9 +4,10 @@ import GradientText from './components/GradientText';
 import TypewriterRoles from './components/TypewriterRoles';
 
 const Hero = () => {
-  const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-  };
+ const scrollToProjects = () => {
+  document.getElementById('mywork')?.scrollIntoView({ behavior: 'smooth' });
+};
+
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-20 relative">
@@ -117,12 +118,17 @@ const Hero = () => {
             </button>
 
 
-          <button className="relative rounded-xl px-8 py-4 text-lg text-white backdrop-blur-sm bg-[#fff3]/10 border border-white/20 overflow-hidden group hover:scale-105 transition-all duration-300">
-          {/* Glass shimmer sweep */}
-          <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:animate-shine before:z-0 before:blur-lg" />
-          
-          <span className="relative z-10">Download CV</span>
-        </button>
+           <a
+            href="https://drive.google.com/file/d/1QBv4RiBOJ68No_JDB8Wxr4VCIoveOZYS/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="relative rounded-xl px-8 py-4 text-lg text-white backdrop-blur-sm bg-[#fff3]/10 border border-white/20 overflow-hidden group hover:scale-105 transition-all duration-300">
+              {/* Glass shimmer sweep */}
+              <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:animate-shine before:z-0 before:blur-lg" />
+              <span className="relative z-10">Download CV</span>
+            </button>
+          </a>
             </motion.div>
           </motion.div>
         </motion.div>
