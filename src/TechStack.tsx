@@ -5,7 +5,6 @@ import {
   Database,
   Zap,
   Globe,
-  Smartphone,
   PenTool,
   CircleDot,
 } from "lucide-react";
