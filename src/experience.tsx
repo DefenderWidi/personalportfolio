@@ -1,0 +1,135 @@
+// src/Experience.tsx
+import { motion } from "framer-motion";
+
+interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  type: string;
+  details: string[];
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    role: "Front-end Developer",
+    company: "PT Teknologi Kartu Indonesia",
+    period: "Jul 2025 – Present",
+    type: "Internship",
+    details: [
+      "Revamp the Learning Management System based on the new UI/UX design",
+    ],
+  },
+  {
+    role: "Laravel Web Developer",
+    company: "PT Winnicode Garuda Teknologi",
+    period: "Mar 2025 – Present",
+    type: "Internship",
+    details: [
+      "Designed and developed a full-stack job portal using Laravel, starting from UI/UX planning in Figma to full implementation.",
+    ],
+  },
+  {
+    role: "Wordpress Web Developer",
+    company: "PT Damases Sejahtera",
+    period: "Mar 2025 – Present",
+    type: "Internship",
+    details: [
+      "Redesigned key page layouts with modern design principles, resulting in a fresher and more professional brand presentation.",
+      "Ensured consistency in typography, color scheme, and responsive layout across various devices and screen sizes.",
+    ],
+  },
+  {
+    role: "Copywriter",
+    company: "Tim Media Teknik Komputer ITS",
+    period: "Feb 2025 – Present",
+    type: "Contract",
+    details: [
+      "Responsible for all copywriting needs within the Computer Engineering department, including event news articles, social media captions, announcement broadcasts, and brochures.",
+      "Crafted compelling and engaging content to enhance departmental communication and public outreach.",
+    ],
+  },
+  {
+    role: "Content Writer",
+    company: "Mojok.co",
+    period: "Aug 2024 – Present",
+    type: "Freelance",
+    details: [
+      "Wrote engaging automotive articles, covering vehicle reviews and consumer insights.",
+      "One of my articles ranked in the Top 5 most-read weekly articles, later featured in Mojok.co’s Reels, gaining 260,000+ views.",
+      "Applied SEO best practices, optimizing content for higher search rankings and audience engagement.",
+    ],
+  },
+  {
+    role: "Full Stack Developer",
+    company: "Dinas Kominfo Kab. Semarang",
+    period: "Jan 2025 – Feb 2025",
+    type: "Internship",
+    details: [
+      'Collaborated on the "Komdigi Executive Dashboard" within one month.',
+      "Engineered ERD and Activity Diagram for workflow definition.",
+      "Designed intuitive UI/UX with positive feedback from the Application Informatics Division.",
+      "Built performant front-end using SSR.",
+      "Wrote comprehensive technical documentation.",
+    ],
+  },
+  {
+    role: "Content Writer",
+    company: "IDN Times",
+    period: "May 2019 – Mar 2023",
+    type: "Freelance",
+    details: [
+      "Wrote and published 125 articles on tech and automotive.",
+      "Achieved 538,000+ views and ranked 487 of 98,593 writers.",
+    ],
+  },
+];
+
+const Experience = () => {
+  return (
+    <section className="py-24 px-6 bg-black/60 text-white" id="experience">
+      <div className="max-w-6xl mx-auto">
+        <motion.h2
+          className="text-5xl font-bold text-center mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          My <span className="bg-gradient-to-r from-[#ff6600] to-[#ffc107] bg-clip-text text-transparent">Experience</span>
+        </motion.h2>
+
+        <div className="space-y-10">
+          {experiences.map((exp, idx) => {
+            const direction = idx % 2 === 0 ? -100 : 100; // Kiri kalau genap, kanan kalau ganjil
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: direction }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-md shadow-md"
+              >
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+                  <h3 className="text-xl font-semibold text-orange-200">
+                    {exp.role}{" "}
+                    <span className="text-white/70">| {exp.company}</span>
+                  </h3>
+                  <p className="text-sm text-white/50">
+                    {exp.period} · {exp.type}
+                  </p>
+                </div>
+                <ul className="list-disc list-inside text-sm text-white/80 space-y-1 mt-2">
+                  {exp.details.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Experience;
