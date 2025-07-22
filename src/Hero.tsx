@@ -2,17 +2,32 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Sparkles } from 'lucide-react';
 import GradientText from './components/GradientText';
 import TypewriterRoles from './components/TypewriterRoles';
+import LightRays from './components/LightRays';
 
 const Hero = () => {
  const scrollToProjects = () => {
   document.getElementById('mywork')?.scrollIntoView({ behavior: 'smooth' });
 };
 
-
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-20 relative">
       {/* Overlay gelap */}
       <div className="absolute inset-0 bg-black/60 z-0" />
+
+ {/* Efek LightRays (di atas bg hitam tapi di bawah konten) */}
+ <div className="absolute inset-0 z-10 pointer-events-none opacity-80">
+  <LightRays
+    raysOrigin="top-center"
+    raysColor="#ffcc33"
+    raysSpeed={1.7}
+    lightSpread={1.5}
+    rayLength={1.8}
+    followMouse={true}
+    mouseInfluence={0.1}
+    noiseAmount={0.05}
+    distortion={0.02}
+  />
+</div>
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         {/* Kartu kaca */}
@@ -136,5 +151,6 @@ const Hero = () => {
     </section>
   );
 };
+
 
 export default Hero;
