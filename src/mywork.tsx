@@ -78,7 +78,7 @@ const MyWork = () => {
                     {item.title}
                   </h3>
                   <p className="text-white/70 mb-3 text-sm">{item.desc}</p>
-                  <span className="text-sm text-orange-300 bg-white/10 px-3 py-1 rounded-full inline-block tracking-wide">
+                  <span className="text-sm text-orange-200 bg-white/10 px-3 py-1 rounded-full inline-block tracking-wide">
                     {item.tag}
                   </span>
 
@@ -89,7 +89,7 @@ const MyWork = () => {
                         href={item.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative inline-block rounded-full px-4 py-2 text-sm font-medium text-white backdrop-blur-sm bg-orange-400/10 border border-orange-300/30 overflow-hidden group hover:scale-105 transition-all duration-300"
+                        className="relative inline-block rounded-full px-4 py-2 text-sm font-medium text-white backdrop-blur-sm bg-orange-500/10 border border-orange-400/30 overflow-hidden group hover:scale-105 transition-all duration-300"
                       >
                         <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-orange-200/50 before:to-transparent before:animate-shine before:z-0 before:blur-lg" />
                         <span className="relative z-10">GitHub</span>
@@ -100,7 +100,7 @@ const MyWork = () => {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative inline-block rounded-full px-4 py-2 text-sm font-medium text-white backdrop-blur-sm bg-orange-400/10 border border-orange-300/30 overflow-hidden group hover:scale-105 transition-all duration-300"
+                        className="relative inline-block rounded-full px-4 py-2 text-sm font-medium text-white backdrop-blur-sm bg-orange-500/10 border border-orange-400/30 overflow-hidden group hover:scale-105 transition-all duration-300"
                       >
                         <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-orange-200/50 before:to-transparent before:animate-shine before:z-0 before:blur-lg" />
                         <span className="relative z-10">Visit Site</span>

@@ -1,5 +1,6 @@
 // src/Experience.tsx
 import { motion } from "framer-motion";
+import GradientText from "./components/GradientText";
 
 interface ExperienceItem {
   role: string;
@@ -16,7 +17,8 @@ const experiences: ExperienceItem[] = [
     period: "Jul 2025 – Present",
     type: "Internship",
     details: [
-      "Revamp the Learning Management System based on the new UI/UX design",
+      "Revamped the company’s Learning Management System (LMS) interface based on new UI/UX designs to improve user accessibility and engagement.",
+      "Initiated additional intuitive visual elements and interactive effects beyond the original design through collaboration with the product manager, enhancing the overall user experience.",
     ],
   },
   {
@@ -94,7 +96,13 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          My <span className="bg-gradient-to-r from-[#ff6600] to-[#ffc107] bg-clip-text text-transparent">Experience</span>
+         <GradientText
+  className="text-5xl md:text-6xl font-extrabold tracking-tight"
+  colors={["#ff6600", "#ff8800", "#ffc107", "#fff8e1"]}
+  animationSpeed={6}
+>
+  My Experience
+</GradientText>
         </motion.h2>
 
         <div className="space-y-10">

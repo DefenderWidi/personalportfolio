@@ -1,32 +1,42 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Sparkles } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowDown, Sparkles, Download} from 'lucide-react';
 import GradientText from './components/GradientText';
 import TypewriterRoles from './components/TypewriterRoles';
 import LightRays from './components/LightRays';
 
 const Hero = () => {
- const scrollToProjects = () => {
-  document.getElementById('mywork')?.scrollIntoView({ behavior: 'smooth' });
-};
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const scrollToProjects = () => {
+    document.getElementById('mywork')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20 relative">
+    <section className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-x-hidden">
       {/* Overlay gelap */}
-      <div className="absolute inset-0 bg-black/60 z-0" />
+      <div className="absolute inset-0 bg-black/55 z-0" />
 
  {/* Efek LightRays (di atas bg hitam tapi di bawah konten) */}
- <div className="absolute inset-0 z-10 pointer-events-none opacity-80">
-  <LightRays
-    raysOrigin="top-center"
-    raysColor="#ffcc33"
-    raysSpeed={1.7}
-    lightSpread={1.5}
-    rayLength={1.8}
-    followMouse={true}
-    mouseInfluence={0.1}
-    noiseAmount={0.05}
-    distortion={0.02}
-  />
+ <div className="absolute inset-0 z-10 pointer-events-none opacity-100 mix-blend-screen">
+<LightRays
+  raysOrigin="top-center"
+  raysColor="#ffcc33"
+  raysSpeed={isMobile ? 0.9 : 1.7}
+  lightSpread={isMobile ? 3.5 : 1.5}
+  rayLength={isMobile ? 2.8 : 1.8}
+  followMouse={!isMobile}
+  mouseInfluence={isMobile ? 0 : 0.1}
+  noiseAmount={isMobile ? 0.12 : 0.05}
+  distortion={isMobile ? 0.04 : 0.02}
+/>
 </div>
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
@@ -38,7 +48,7 @@ const Hero = () => {
           transition={{ duration: 1, ease: 'easeOut' }}
         >
           {/* Inner glow */}
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#ff6600]/10 via-transparent to-[#ffc107]/10" />
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#ff6600]/15 via-transparent to-[#ffc107]/15" />
 
           {/* Isi */}
           <motion.div
@@ -101,9 +111,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1.1 }}
             >
-              Specializing in Interactive Web Experiences that push the boundaries
-              of design and technology. Creating digital solutions that captivate,
-              inspire, and deliver exceptional user experiences.
+              A Computer Engineering student with extensive experience in web development, built through internships, freelance projects, and academic work. I specialize in developing interactive and scalable web applications using modern technology stacks. Beyond coding, I have a strong passion for writing, particularly in articles and copywriting that bridge the gap between complex technology and engaging human-centered communication.
             </motion.p>
 
             {/* Tombol */}
@@ -132,17 +140,29 @@ const Hero = () => {
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-[#cc3300] to-[#ff9900] transition-opacity duration-300" />
             </button>
 
-
            <a
-            href="https://drive.google.com/file/d/1QBv4RiBOJ68No_JDB8Wxr4VCIoveOZYS/view?usp=sharing"
+            href="https://drive.google.com/file/d/1Syka8OxwO2Qa4niYjHbQJ0_I_g_PSIEh/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button className="relative rounded-xl px-8 py-4 text-lg text-white backdrop-blur-sm bg-[#fff3]/10 border border-white/20 overflow-hidden group hover:scale-105 transition-all duration-300">
-              {/* Glass shimmer sweep */}
-              <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:animate-shine before:z-0 before:blur-lg" />
-              <span className="relative z-10">Download CV</span>
-            </button>
+         <button className="group relative overflow-hidden rounded-xl px-8 py-4 text-lg text-white shadow-lg backdrop-blur-sm bg-[#fff3]/10 border border-white/30 hover:scale-105 transition-all duration-300">
+    {/* Shine effect */}
+    <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:animate-shine before:z-0 before:blur-lg" />
+
+    {/* Isi konten */}
+    <span className="relative z-10 flex items-center gap-2">
+      Download CV
+      <motion.div
+        animate={{ y: [0, 3, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+      >
+        <Download className="w-5 h-5" />
+      </motion.div>
+    </span>
+
+    {/* Overlay saat hover */}
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-white/10 to-white/5 transition-opacity duration-300" />
+  </button>
           </a>
             </motion.div>
           </motion.div>
