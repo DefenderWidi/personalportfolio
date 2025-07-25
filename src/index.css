@@ -10,3 +10,7 @@ body {
   background-attachment: fixed;
   background-color: #0e0e0e; /* fallback color */
 }
+
+html, body {
+  overflow-x: hidden;
+}

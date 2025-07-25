@@ -75,7 +75,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.7 }}
             >
               <GradientText
-                className="text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight"
+               className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight break-words"
                 colors={['#ff5e00', '#ff8800', '#ffb300', '#ffe066']}
                 animationSpeed={5}
               >
