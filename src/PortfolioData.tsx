@@ -46,6 +46,7 @@ export const portfolioData: Record<Category, PortfolioItem[]> = {
       tag: "PostgreSQL + Express + React + Tailwind",
       image: "/classpace.png",
       github: "https://github.com/Eeja07/course-webapp-project.git",
+      link: "http://classspace.eeja.site/",
     },
     {
       title: "PalmCheck Website",
