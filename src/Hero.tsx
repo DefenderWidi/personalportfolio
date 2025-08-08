@@ -22,7 +22,7 @@ const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-x-hidden">
       {/* Overlay gelap */}
-      <div className="absolute inset-0 bg-black/55 z-0" />
+      <div className="absolute inset-0 z-0" />
 
       {/* Efek LightRays (di atas bg hitam tapi di bawah konten) */}
       <div className="absolute inset-0 z-10 pointer-events-none opacity-100 mix-blend-screen">

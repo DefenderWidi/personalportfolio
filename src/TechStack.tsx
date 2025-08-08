@@ -39,7 +39,7 @@ const technologies = [
 const TechStack = () => {
   return (
     <section className="py-24 px-6 relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-black/60 z-0" />
+      <div className="absolute inset-0 z-0" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto">
         <motion.div
@@ -51,7 +51,7 @@ const TechStack = () => {
         >
           <GradientText
             className="text-5xl md:text-6xl font-extrabold tracking-tight"
-            colors={['#ffc107', '#ffd54f', '#ffecb3', '#fff8e1']}
+            colors={["#ffc107", "#ffd54f", "#ffecb3", "#fff8e1"]}
             animationSpeed={5}
           >
             Tech Stack
@@ -71,10 +71,13 @@ const TechStack = () => {
             {[...technologies, ...technologies].map((tech, index) => (
               <motion.div
                 key={`${tech.name}-${index}`}
-                className="flex-shrink-0 backdrop-blur-md bg-white/5 rounded-2xl border border-white/10 p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group min-w-[220px]"
+                className="relative flex-shrink-0 rounded-2xl border border-white/10 p-6 shadow-xl transition-all duration-300 hover:scale-105 group min-w-[220px] bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-2xl backdrop-saturate-200 overflow-hidden"
                 whileHover={{ y: -5 }}
               >
-                <div className="w-14 h-14 rounded-xl bg-white/25 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                {/* Pseudo-reflection shine */}
+                <span className="absolute inset-0 rounded-2xl bg-white/10 blur-[8px] opacity-10 pointer-events-none" />
+
+                <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-inner">
                   <img
                     src={techLogos[tech.key]}
                     alt={tech.name}

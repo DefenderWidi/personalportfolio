@@ -88,7 +88,7 @@ const experiences: ExperienceItem[] = [
 
 const Experience = () => {
   return (
-    <section className="py-24 px-6 bg-black/60 text-white" id="experience">
+    <section className="py-24 px-6 text-white" id="experience">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           className="text-5xl font-bold text-center mb-12"
