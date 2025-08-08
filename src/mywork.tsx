@@ -1,3 +1,4 @@
+// src/MyWork.tsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GradientText from "./components/GradientText";
@@ -6,7 +7,7 @@ import {
   categories,
   type Category,
   type PortfolioItem,
-} from "./PortfolioData"; // Pastikan path sesuai
+} from "./PortfolioData";
 
 const MyWork = () => {
   const [selected, setSelected] = useState<Category>("IT Developer");
@@ -66,14 +67,18 @@ const MyWork = () => {
               <motion.div
                 key={idx}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 text-left"
+                transition={{ duration: 0.3 }}
+                className="relative bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-white/10 backdrop-blur-2xl backdrop-saturate-200 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 text-left"
               >
+                {/* Shine overlay */}
+                <span className="absolute inset-0 bg-white/10 blur-[8px] opacity-10 pointer-events-none rounded-2xl" />
+
                 <img
                   src={item.image}
                   alt={item.title}
                   className="w-full h-48 object-cover rounded-t-2xl"
                 />
-                <div className="p-6">
+                <div className="p-6 relative z-10">
                   <h3 className="text-xl font-semibold text-white mb-2">
                     {item.title}
                   </h3>

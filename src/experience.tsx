@@ -88,7 +88,7 @@ const experiences: ExperienceItem[] = [
 
 const Experience = () => {
   return (
-    <section className="py-24 px-6 text-white" id="experience">
+    <section className="py-24 px-6 text-white relative z-10" id="experience">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           className="text-5xl font-bold text-center mb-12"
@@ -96,18 +96,18 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-         <GradientText
-  className="text-5xl md:text-6xl font-extrabold tracking-tight"
-  colors={["#ff6600", "#ff8800", "#ffc107", "#fff8e1"]}
-  animationSpeed={6}
->
-  My Experience
-</GradientText>
+          <GradientText
+            className="text-5xl md:text-6xl font-extrabold tracking-tight"
+            colors={["#ff6600", "#ff8800", "#ffc107", "#fff8e1"]}
+            animationSpeed={6}
+          >
+            My Experience
+          </GradientText>
         </motion.h2>
 
         <div className="space-y-10">
           {experiences.map((exp, idx) => {
-            const direction = idx % 2 === 0 ? -100 : 100; // Kiri kalau genap, kanan kalau ganjil
+            const direction = idx % 2 === 0 ? -100 : 100;
             return (
               <motion.div
                 key={idx}
@@ -115,9 +115,13 @@ const Experience = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-md shadow-md"
+              className="relative rounded-2xl border border-white/10 p-6 shadow-xl hover:shadow-[0_0_30px_0_rgba(255,221,51,0.4)] transition-all duration-300 group bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-2xl backdrop-saturate-200 overflow-hidden"
+
               >
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+                {/* pseudo reflection */}
+                <span className="absolute inset-0 rounded-2xl bg-white/10 blur-[8px] opacity-10 pointer-events-none" />
+
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2 relative z-10">
                   <h3 className="text-xl font-semibold text-orange-200">
                     {exp.role}{" "}
                     <span className="text-white/70">| {exp.company}</span>
@@ -126,7 +130,7 @@ const Experience = () => {
                     {exp.period} · {exp.type}
                   </p>
                 </div>
-                <ul className="list-disc list-inside text-sm text-white/80 space-y-1 mt-2">
+                <ul className="list-disc list-inside text-sm text-white/80 space-y-1 mt-2 relative z-10">
                   {exp.details.map((point, i) => (
                     <li key={i}>{point}</li>
                   ))}
