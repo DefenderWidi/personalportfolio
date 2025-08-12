@@ -14,7 +14,7 @@ const experiences: ExperienceItem[] = [
   {
     role: "Front-end Developer",
     company: "PT Teknologi Kartu Indonesia",
-    period: "Jul 2025 – Present",
+    period: "Jul 2025 – Aug 2025",
     type: "Internship",
     details: [
       "Revamped the company’s Learning Management System (LMS) interface based on new UI/UX designs to improve user accessibility and engagement.",
@@ -33,7 +33,7 @@ const experiences: ExperienceItem[] = [
   {
     role: "Wordpress Web Developer",
     company: "PT Damases Sejahtera",
-    period: "Mar 2025 – Present",
+    period: "Mar 2025 – Jul 2025",
     type: "Internship",
     details: [
       "Redesigned key page layouts with modern design principles, resulting in a fresher and more professional brand presentation.",
