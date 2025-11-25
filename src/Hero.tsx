@@ -140,7 +140,7 @@ const Hero = () => {
               </button>
 
               <a
-                href="https://drive.google.com/file/d/1Syka8OxwO2Qa4niYjHbQJ0_I_g_PSIEh/view?usp=sharing"
+                href="https://drive.google.com/file/d/1vwtQeiYADHkS8BeuYCpsg54DeibWsQqq/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >
