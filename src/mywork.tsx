@@ -1,7 +1,5 @@
-// src/MyWork.tsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import GradientText from "./components/GradientText";
 import {
   portfolioData,
   categories,
@@ -13,39 +11,31 @@ const MyWork = () => {
   const [selected, setSelected] = useState<Category>("IT Developer");
 
   return (
-    <section id="mywork" className="py-24 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 z-0" />
-      <div className="relative z-10 max-w-7xl mx-auto text-center">
-        {/* Judul */}
+    <section id="mywork" className="section-shell">
+      <div className="section-container text-center">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 36 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-12"
         >
-          <GradientText
-            className="text-5xl md:text-6xl font-extrabold tracking-tight"
-            colors={["#ffb300", "#ffc107", "#ffecb3", "#fff8e1"]}
-            animationSpeed={6}
-          >
-            My Work
-          </GradientText>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto mt-4">
-            Selected works across tech, writing, and business strategy
+          <p className="text-sm uppercase tracking-[0.2em] text-[#c26a11] mb-3">Portfolio</p>
+          <h2 className="warm-title text-4xl md:text-6xl">My Work</h2>
+          <p className="warm-muted text-lg max-w-2xl mx-auto mt-4">
+            Selected works across development, writing, and business ideas.
           </p>
         </motion.div>
 
-        {/* Kategori */}
-        <div className="flex justify-center gap-4 mb-12 flex-wrap">
+        <div className="flex justify-center gap-4 mb-10 flex-wrap">
           {categories.map((cat: Category) => (
             <button
               key={cat}
               onClick={() => setSelected(cat)}
-              className={`px-6 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
+              className={`rounded-full px-5 py-3 text-sm md:text-base font-semibold transition-all duration-300 ${
                 selected === cat
-                  ? "bg-gradient-to-r from-[#ff6600] to-[#ffc107] text-white shadow-md"
-                  : "bg-white/10 text-white hover:bg-white/20"
+                  ? "bg-gradient-to-r from-[#ff9f1c] to-[#ff7f11] text-white shadow-[8px_8px_18px_rgba(223,124,35,0.25)]"
+                  : "clay-pill"
               }`}
             >
               {cat}
@@ -53,62 +43,60 @@ const MyWork = () => {
           ))}
         </div>
 
-        {/* Portofolio Card */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selected}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+            exit={{ opacity: 0, y: -22 }}
+            transition={{ duration: 0.35 }}
+            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-7"
           >
             {portfolioData[selected].map((item: PortfolioItem, idx: number) => (
               <motion.div
                 key={idx}
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="relative bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-white/10 backdrop-blur-2xl backdrop-saturate-200 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 text-left"
+                className="clay-card overflow-hidden text-left"
               >
-                {/* Shine overlay */}
-                <span className="absolute inset-0 bg-white/10 blur-[8px] opacity-10 pointer-events-none rounded-2xl" />
+                <div className="p-4">
+                  <div className="overflow-hidden rounded-[24px]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-52 object-cover"
+                    />
+                  </div>
+                </div>
 
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-48 object-cover rounded-t-2xl"
-                />
-                <div className="p-6 relative z-10">
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/70 mb-3 text-sm">{item.desc}</p>
-                  <span className="text-sm text-orange-200 bg-white/10 px-3 py-1 rounded-full inline-block tracking-wide">
-                    {item.tag}
-                  </span>
+                <div className="px-6 pb-6">
+                  <div className="mb-3">
+                    <span className="clay-pill text-xs">{item.tag}</span>
+                  </div>
 
-                  {/* Tombol Link */}
-                  <div className="flex gap-3 mt-4 flex-wrap">
+                  <h3 className="text-xl font-bold text-[#7b430a] mb-2">{item.title}</h3>
+                  <p className="warm-text text-sm leading-7 min-h-[84px]">{item.desc}</p>
+
+                  <div className="flex gap-3 mt-5 flex-wrap">
                     {item.github && (
                       <a
                         href={item.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative inline-block rounded-full px-4 py-2 text-sm font-medium text-white backdrop-blur-sm bg-orange-500/30 border border-orange-400/30 overflow-hidden group hover:scale-105 transition-all duration-300"
+                        className="clay-button-secondary text-sm px-4 py-3"
                       >
-                        <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-orange-200/50 before:to-transparent before:animate-shine before:z-0 before:blur-lg" />
-                        <span className="relative z-10">GitHub</span>
+                        GitHub
                       </a>
                     )}
+
                     {item.link && (
                       <a
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative inline-block rounded-full px-4 py-2 text-sm font-medium text-white backdrop-blur-sm bg-orange-500/30 border border-orange-400/30 overflow-hidden group hover:scale-105 transition-all duration-300"
+                        className="clay-button-primary text-sm px-4 py-3"
                       >
-                        <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-orange-200/50 before:to-transparent before:animate-shine before:z-0 before:blur-lg" />
-                        <span className="relative z-10">Visit Site</span>
+                        Visit Site
                       </a>
                     )}
                   </div>

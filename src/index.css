@@ -2,15 +2,154 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-image: url('/bgportfolio.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  background-color: #0e0e0e; /* fallback color */
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #6f4217;
+  background: #fff5d6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
-html, body {
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
   overflow-x: hidden;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(255, 226, 130, 0.95) 0, rgba(255, 226, 130, 0) 25%),
+    radial-gradient(circle at 92% 14%, rgba(255, 176, 73, 0.62) 0, rgba(255, 176, 73, 0) 26%),
+    radial-gradient(circle at 78% 78%, rgba(255, 207, 94, 0.55) 0, rgba(255, 207, 94, 0) 22%),
+    linear-gradient(145deg, #fffaf0 0%, #fff2c9 45%, #ffd998 100%);
+  background-attachment: fixed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #ffb43b;
+  color: #fff;
+}
+
+.clay-card {
+  background: linear-gradient(145deg, rgba(255, 250, 229, 0.96), rgba(255, 226, 166, 0.92));
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    18px 18px 34px rgba(184, 116, 30, 0.18),
+    -14px -14px 30px rgba(255, 255, 255, 0.82),
+    inset 3px 3px 7px rgba(255, 255, 255, 0.68),
+    inset -4px -4px 10px rgba(214, 139, 36, 0.08);
+}
+
+.clay-card-soft {
+  background: linear-gradient(145deg, rgba(255, 248, 221, 0.94), rgba(255, 218, 145, 0.86));
+  border: 2px solid rgba(255, 255, 255, 0.66);
+  box-shadow:
+    11px 11px 22px rgba(190, 120, 29, 0.14),
+    -9px -9px 20px rgba(255, 255, 255, 0.76),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.58);
+}
+
+.clay-inset {
+  background: rgba(255, 244, 208, 0.72);
+  box-shadow:
+    inset 5px 5px 11px rgba(191, 126, 36, 0.13),
+    inset -5px -5px 11px rgba(255, 255, 255, 0.78);
+}
+
+.clay-button-primary {
+  background: linear-gradient(145deg, #ffad24, #ff8217);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.44);
+  box-shadow:
+    9px 9px 18px rgba(201, 111, 22, 0.25),
+    -7px -7px 16px rgba(255, 247, 222, 0.74),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.clay-button-primary:hover {
+  transform: translateY(-3px) rotate(-0.5deg);
+  box-shadow:
+    12px 14px 22px rgba(201, 111, 22, 0.29),
+    -7px -7px 16px rgba(255, 247, 222, 0.78);
+}
+
+.clay-button-secondary {
+  background: linear-gradient(145deg, #fff8df, #ffdfa1);
+  color: #824a0e;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    9px 9px 18px rgba(187, 121, 31, 0.14),
+    -7px -7px 16px rgba(255, 255, 255, 0.77);
+}
+
+.clay-button-secondary:hover {
+  transform: translateY(-3px) rotate(0.5deg);
+}
+
+.clay-pill {
+  background: linear-gradient(145deg, #fff9e6, #ffe1a6);
+  border: 1.5px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    7px 7px 14px rgba(190, 123, 32, 0.12),
+    -6px -6px 13px rgba(255, 255, 255, 0.78);
+}
+
+.warm-title {
+  color: #7c430d;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.55);
+}
+
+.orange-gradient-text {
+  background: linear-gradient(90deg, #ff7112, #ff9f1c 45%, #f5b800);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sticker {
+  box-shadow:
+    8px 10px 20px rgba(170, 105, 19, 0.16),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.6);
+}
+
+.dot-pattern {
+  background-image: radial-gradient(rgba(212, 129, 28, 0.22) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes bobReverse {
+  0%, 100% { transform: translateY(0) rotate(3deg); }
+  50% { transform: translateY(9px) rotate(-2deg); }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { transform: scale(1); opacity: 0.72; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+.animate-bob {
+  animation: bob 5.5s ease-in-out infinite;
+}
+
+.animate-bob-reverse {
+  animation: bobReverse 6.5s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 4s ease-in-out infinite;
 }

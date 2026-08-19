@@ -1,161 +1,151 @@
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { ArrowDown, Sparkles, Download } from 'lucide-react';
-import GradientText from './components/GradientText';
-import TypewriterRoles from './components/TypewriterRoles';
-import LightRays from './components/LightRays';
+import { motion } from "framer-motion";
+import { ArrowDown, Download, Sparkles, Code2, PenTool, BriefcaseBusiness } from "lucide-react";
+import TypewriterRoles from "./components/TypewriterRoles";
 
 const Hero = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
   const scrollToProjects = () => {
-    document.getElementById('mywork')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("mywork")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-x-hidden">
-      {/* Background layer */}
-      <div className="absolute inset-0 z-0" />
+    <section id="home" className="relative min-h-screen overflow-hidden px-4 pb-20 pt-32 md:px-6 md:pt-36">
+      <div className="dot-pattern absolute inset-0 opacity-45" />
 
-    {/* Light rays */}
-<div className="absolute inset-0 z-10 pointer-events-none mix-blend-screen opacity-100">
-  <LightRays
-    raysOrigin="top-center"
-    raysColor="#ffd700" 
-    raysSpeed={isMobile ? 0.7 : 1.2} 
-    lightSpread={isMobile ? 5 : 2.5}
-    rayLength={isMobile ? 3.5 : 2.5} 
-    followMouse={!isMobile}
-    mouseInfluence={isMobile ? 0 : 0.2} 
-    noiseAmount={isMobile ? 0.18 : 0.08} 
-    distortion={isMobile ? 0.08 : 0.05} 
-  />
-</div>
+      {/* decorative clay stickers */}
+      <div className="pointer-events-none absolute left-[4%] top-36 hidden h-20 w-20 items-center justify-center rounded-[30px] bg-[#ffd45d] text-4xl sticker animate-bob md:flex">💻</div>
+      <div className="pointer-events-none absolute right-[5%] top-52 hidden h-20 w-20 items-center justify-center rounded-full bg-[#ffb55d] text-4xl sticker animate-bob-reverse lg:flex">🚀</div>
+      <div className="pointer-events-none absolute bottom-24 left-[8%] hidden h-16 w-16 items-center justify-center rounded-[24px] bg-[#fff0aa] text-3xl sticker animate-bob-reverse lg:flex">✍️</div>
+      <div className="pointer-events-none absolute bottom-20 right-[12%] hidden h-16 w-16 items-center justify-center rounded-[24px] bg-[#ffd978] text-3xl sticker animate-bob md:flex">⚙️</div>
 
-      {/* Content */}
-      <div className="relative z-20 max-w-5xl mx-auto text-center">
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1.18fr_.82fr]">
         <motion.div
-          className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-2xl backdrop-saturate-200 p-8 md:p-16 shadow-2xl"
-          initial={{ opacity: 0, y: 50 }}
+          className="clay-card relative overflow-hidden rounded-[42px] p-7 md:p-12"
+          initial={{ opacity: 0, y: 34 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.7 }}
         >
-        {/* Watery shimmer + reflection */}
-<div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
-  {/* Shimmer utama lebih terang dan tajam */}
-  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/60 via-white/20 to-transparent animate-waterWave blur-lg opacity-10 saturate-[2.5] mix-blend-screen" />
+          <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#ffd66d]/65 blur-2xl" />
+          <div className="absolute -bottom-14 -left-10 h-44 w-44 rounded-full bg-[#ffb551]/50 blur-2xl" />
 
-  {/* Pantulan air di bawah, lebih tebal dan hangat */}
-  <div className="absolute top-full left-0 w-full h-full scale-y-[-1] animate-waterWave blur-md opacity-60 bg-gradient-to-t from-[#fff9c4]/50 via-[#ffe082]/30 to-transparent mix-blend-screen" />
-</div>
+          <div className="relative z-10">
+            <div className="clay-pill mb-7 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-[#86501a]">
+              <Sparkles className="h-4 w-4 text-[#ff8b15]" />
+              Computer Engineering · Tech · Writing
+            </div>
 
-          <motion.div
-            className="relative z-10"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            {/* Badge */}
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <Sparkles className="w-4 h-4 text-[#ffc107]" />
-              <span className="text-sm text-white/80">Available for projects</span>
-            </motion.div>
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-[#c46e16]">Hello, I’m 👋</p>
+            <h1 className="orange-gradient-text text-5xl font-black leading-[.95] tracking-tight sm:text-6xl md:text-8xl">
+              Defender<br />Widi
+            </h1>
 
-            {/* Name */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-            >
-              <GradientText
-                className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight"
-                colors={["#ff5e00", "#ff8800", "#ffb300", "#ffe066"]}
-                animationSpeed={5}
-              >
-                Defender Widi
-              </GradientText>
-            </motion.div>
-
-            {/* Subtitle */}
-            <motion.p
-              className="text-xl md:text-3xl font-light text-[#ffcc80] mb-6 h-[2.5rem]"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-            >
+            <div className="mt-5 min-h-[48px] text-xl font-extrabold text-[#78440f] md:text-3xl">
               <TypewriterRoles
                 roles={[
-                  'Frontend Developer',
-                  'Full-Stack Developer',
-                  'Web Developer',
-                  'Copywriter',
-                  'Content Writer',
+                  "Computer Engineering Student",
+                  "Frontend Developer",
+                  "Full-Stack Developer",
+                  "IoT & Digital Solution Builder",
+                  "Copywriter & Content Writer",
                 ]}
-                typingSpeed={80}
-                deletingSpeed={40}
-                pauseDuration={1500}
+                typingSpeed={70}
+                deletingSpeed={36}
+                pauseDuration={1400}
               />
-            </motion.p>
+            </div>
 
-            {/* Description */}
-            <motion.p
-              className="text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.1 }}
-            >
-              A Computer Engineering student with extensive experience in web development, built through internships, freelance projects, and academic work. I specialize in developing interactive and scalable web applications using modern technology stacks. Beyond coding, I have a strong passion for writing, particularly in articles and copywriting that bridge the gap between complex technology and engaging human-centered communication.
-            </motion.p>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-[#85572a] md:text-lg">
+              I enjoy turning technical problems into useful digital solutions — from mining operations and IoT monitoring to scalable web applications. Beyond coding, I also love writing and translating complex ideas into clear, engaging communication.
+            </p>
 
-            {/* Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row justify-center items-center gap-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.3 }}
-            >
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <button
                 onClick={scrollToProjects}
-                className="group relative overflow-hidden rounded-xl px-8 py-4 text-lg text-white shadow-lg bg-gradient-to-r from-[#ff6600] to-[#ffc107] hover:from-[#cc3300] hover:to-[#ff9900] transition-all duration-300 hover:scale-105"
+                className="clay-button-primary flex items-center justify-center gap-2 rounded-2xl px-6 py-4 font-bold transition"
               >
-                <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-[#1a0a00]/60 before:to-transparent before:animate-shine before:z-0 before:blur-md before:mix-blend-overlay" />
-                <span className="relative z-10 flex items-center gap-2">
-                  Explore My Work
-                  <motion.div animate={{ y: [0, 3, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-                    <ArrowDown className="w-5 h-5" />
-                  </motion.div>
-                </span>
+                Explore My Work <ArrowDown className="h-5 w-5" />
               </button>
 
               <a
                 href="https://drive.google.com/file/d/1vwtQeiYADHkS8BeuYCpsg54DeibWsQqq/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="clay-button-secondary flex items-center justify-center gap-2 rounded-2xl px-6 py-4 font-bold transition"
               >
-                <button className="group relative overflow-hidden rounded-xl px-8 py-4 text-lg text-white shadow-lg backdrop-blur-sm bg-white/10 border border-white/30 hover:scale-105 transition-all duration-300">
-                  <span className="absolute inset-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:animate-shine before:z-0 before:blur-lg" />
-                  <span className="relative z-10 flex items-center gap-2">
-                    Download CV
-                    <motion.div animate={{ y: [0, 3, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-                      <Download className="w-5 h-5" />
-                    </motion.div>
-                  </span>
-                </button>
+                Download CV <Download className="h-5 w-5" />
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+
+            <div className="mt-9 grid gap-4 sm:grid-cols-3">
+              {[
+                { icon: Code2, emoji: "💻", title: "Build", desc: "Web apps, dashboards & digital tools" },
+                { icon: PenTool, emoji: "✍️", title: "Write", desc: "Tech, automotive & human-centered copy" },
+                { icon: BriefcaseBusiness, emoji: "📈", title: "Improve", desc: "Data, operations & continuous improvement" },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className="clay-card-soft rounded-[25px] p-4">
+                    <div className="mb-3 flex items-center justify-between">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#fff3c3] text-[#ef7d12] shadow-inner">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="text-2xl">{item.emoji}</span>
+                    </div>
+                    <h3 className="font-extrabold text-[#75400f]">{item.title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-[#956938]">{item.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="space-y-6"
+          initial={{ opacity: 0, y: 34 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.12 }}
+        >
+          <div className="clay-card relative rounded-[36px] p-6 md:p-7">
+            <div className="absolute right-5 top-5 text-3xl animate-pulse-soft">🌟</div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#c36a14]">Quick Snapshot</p>
+            <div className="mt-5 space-y-3">
+              {[
+                ["🎓", "Education", "Computer Engineering · ITS"],
+                ["⛏️", "Industry Exposure", "Mining operations & digital improvement"],
+                ["🌐", "Core Focus", "Web development, IoT & data-driven solutions"],
+                ["📝", "Creative Side", "Copywriting & content writing"],
+              ].map(([emoji, title, desc]) => (
+                <div key={title} className="clay-inset flex gap-3 rounded-[22px] p-4">
+                  <span className="text-2xl">{emoji}</span>
+                  <div>
+                    <p className="font-extrabold text-[#78430f]">{title}</p>
+                    <p className="text-sm leading-6 text-[#96683a]">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="clay-card rounded-[36px] p-6 md:p-7">
+            <div className="mb-5 flex items-center justify-between">
+              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#c36a14]">Little Wins</p>
+              <span className="text-2xl">🏆</span>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                ["3.40", "Current GPA", "🎓"],
+                ["125", "IDN Times articles", "📝"],
+                ["538K+", "IDN Times views", "👀"],
+                ["5", "Awards & finals", "🏅"],
+              ].map(([value, label, emoji]) => (
+                <div key={label} className="clay-card-soft rounded-[24px] p-4 text-center">
+                  <div className="mb-1 text-xl">{emoji}</div>
+                  <div className="text-2xl font-black text-[#f07f12]">{value}</div>
+                  <div className="mt-1 text-xs font-semibold text-[#916234]">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
