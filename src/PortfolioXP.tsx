@@ -1843,7 +1843,7 @@ const styles = String.raw`
 
   .xp-window { position:absolute; min-width:470px; min-height:330px; display:flex; flex-direction:column; background:#ece9d8; border:3px solid #0b54db; border-radius:8px 8px 3px 3px; box-shadow:0 10px 28px rgba(0,0,0,.38), inset 0 0 0 1px #4f8cff; overflow:hidden; }
   .xp-window-max { inset:0 0 40px 0 !important; width:auto !important; height:auto !important; border-radius:0; }
-  .xp-titlebar { height:34px; flex:0 0 34px; display:flex; align-items:center; justify-content:space-between; padding:3px 5px 3px 6px; color:white; background:linear-gradient(180deg,#2b7bff 0%,#1260e7 45%,#0951d5 85%,#397cff 100%); box-shadow:inset 0 1px 0 #70a8ff, inset 0 -1px 0 #0a42b5; cursor:move; }
+  .xp-titlebar { height:34px; flex:0 0 34px; display:flex; align-items:center; justify-content:space-between; padding:3px 5px 3px 6px; color:white; background:linear-gradient(180deg,#2b7bff 0%,#1260e7 45%,#0951d5 85%,#397cff 100%); box-shadow:inset 0 1px 0 #70a8ff, inset 0 -1px 0 #0a42b5; cursor:move; touch-action:none; }
   .xp-title { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:700; text-shadow:1px 1px #0d3680; white-space:nowrap; }
   .xp-title-icon { width:20px; height:20px; display:grid; place-items:center; background:rgba(255,255,255,.16); border-radius:3px; }
   .xp-window-controls { display:flex; gap:3px; }
@@ -2270,7 +2270,32 @@ const styles = String.raw`
     .xp-desktop-icon { width:74px; min-height:73px; }
     .xp-desktop-icon-art { width:39px; height:39px; }
     .xp-desktop-icon > span:last-child { font-size:10px; line-height:12px; }
-    .xp-window, .xp-window-max { left:4px !important; right:4px !important; top:6px !important; bottom:42px !important; width:auto !important; height:auto !important; min-width:0; min-height:0; border-radius:6px; }
+    /* Mobile windowed mode: leave visible desktop space so the window can be dragged. */
+    .xp-window:not(.xp-window-max) {
+      left:14px !important;
+      right:auto !important;
+      top:48px !important;
+      bottom:auto !important;
+      width:calc(100vw - 42px) !important;
+      height:calc(100vh - 126px) !important;
+      min-width:0;
+      min-height:0;
+      border-radius:6px;
+    }
+
+    /* Mobile maximized mode: genuinely fill the desktop above the taskbar. */
+    .xp-window.xp-window-max {
+      left:0 !important;
+      right:0 !important;
+      top:0 !important;
+      bottom:40px !important;
+      width:auto !important;
+      height:auto !important;
+      min-width:0;
+      min-height:0;
+      border-radius:0;
+      transform:none !important;
+    }
     .xp-menu-strip { gap:11px; font-size:9px; overflow:hidden; }
     .xp-page { padding:11px; }
     .xp-two-col, .xp-folder-layout, .xp-skill-grid, .xp-writing-grid { grid-template-columns:1fr; }
