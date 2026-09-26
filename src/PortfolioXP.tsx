@@ -1444,7 +1444,7 @@ Portfolio: builtbydefender.vercel.app`,
           </div>
           <div className="xp-music-screen">
             <span className="xp-music-label">DEFENDER'S NOW PLAYING</span>
-            <strong>Denny Caknan — Negoro Angin</strong>
+            <strong><span className="xp-song-marquee">Denny Caknan — Negoro Angin</span></strong>
             <div className="xp-winamp-eq" aria-hidden="true">
               {Array.from({ length: 11 }).map((_, index) => (
                 <i key={index} style={{ animationDelay: `${index * -0.11}s` }} />
@@ -1769,7 +1769,10 @@ const styles = String.raw`
     font-size:8.5px;
     line-height:1.1;
     white-space:nowrap;
-    text-overflow:ellipsis;
+  }
+  .xp-song-marquee {
+    display:inline-block;
+    white-space:nowrap;
   }
   .xp-winamp-eq {
     height:18px;
@@ -1795,6 +1798,16 @@ const styles = String.raw`
     45% { transform:scaleY(.95); opacity:1; }
     100% { transform:scaleY(.4); opacity:.86; }
   }
+
+  @keyframes xpSongMarquee {
+  0%, 5% {
+    transform: translateX(0);
+  }
+
+  95%, 100% {
+    transform: translateX(-100%);
+  }
+}
 
   .xp-music-controls {
     height:21px;
@@ -2209,6 +2222,11 @@ const styles = String.raw`
   .wallpaper-midnight .xp-hill-back { background:linear-gradient(130deg,#1b3a39,#0a2428 65%,#07181f); opacity:.8; }
   .wallpaper-midnight .xp-hill-front { background:linear-gradient(145deg,#214c43,#0c2b2c 60%,#06181d); }
 
+
+  @media (prefers-reduced-motion: reduce) {
+    .xp-song-marquee { animation:none !important; padding-left:0 !important; }
+  }
+
   @media (max-width: 1120px) {
     .xp-gallery-widget { right:10px; top:96px; width:196px; }
     .xp-gallery-widget-stage { height:104px; }
@@ -2238,7 +2256,11 @@ const styles = String.raw`
     .xp-music-disc { width:32px; height:32px; }
     .xp-music-screen { height:39px; padding:3px 4px; }
     .xp-music-label { display:none; }
-    .xp-music-screen strong { margin-top:0; font-size:7px; }
+    .xp-music-screen strong { margin-top:0; font-size:7px; overflow:hidden; }
+    .xp-song-marquee {
+      padding-left:10%;
+      animation:xpSongMarquee 12s linear infinite;
+    }
     .xp-winamp-eq { height:19px; gap:1px; margin-top:2px; }
     .xp-winamp-eq i { width:2px; }
     .xp-music-controls { height:18px; gap:3px; margin-top:3px; font-size:5.5px; }
