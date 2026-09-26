@@ -928,7 +928,7 @@ Portfolio: builtbydefender.vercel.app`,
 
             <div className="xp-stat-grid">
               <div className="xp-stat"><strong>{projects.length}</strong><span>Selected Tech Projects</span></div>
-              <div className="xp-stat"><strong>6</strong><span>Engineering & Dev Roles</span></div>
+              <div className="xp-stat"><strong>6</strong><span>Technical Internship Experiences</span></div>
               <div className="xp-stat"><strong>4</strong><span>Core Domains: Web · AI · IoT · Systems</span></div>
               <div className="xp-stat"><strong>{awards.length}</strong><span>Awards & Finals</span></div>
             </div>
@@ -1437,6 +1437,34 @@ Portfolio: builtbydefender.vercel.app`,
         </div>
       </aside>
 
+      <aside className="xp-music-widget" aria-label="Currently listening" onMouseDown={(e) => e.stopPropagation()}>
+        <div className="xp-music-top">
+          <div className="xp-music-disc" aria-hidden="true">
+            <span>♪</span>
+          </div>
+          <div className="xp-music-screen">
+            <span className="xp-music-label">DEFENDER'S NOW PLAYING</span>
+            <strong>Denny Caknan — Negoro Angin</strong>
+            <div className="xp-winamp-eq" aria-hidden="true">
+              {Array.from({ length: 11 }).map((_, index) => (
+                <i key={index} style={{ animationDelay: `${index * -0.11}s` }} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="xp-music-controls">
+          <span>MP3</span>
+          <span>128 kbps</span>
+          <button
+            type="button"
+            title="Listen to Denny Caknan - Negoro Angin"
+            onClick={() => window.open("https://www.youtube.com/results?search_query=Denny+Caknan+Negoro+Angin", "_blank", "noopener,noreferrer")}
+          >
+            ▶ listen
+          </button>
+        </div>
+      </aside>
+
       {(Object.entries(windows) as [AppId, WindowState][]).map(([id, state]) => {
         if (!state.open || state.minimized) return null;
         const app = appMeta[id];
@@ -1683,6 +1711,122 @@ const styles = String.raw`
   .xp-gallery-widget-nav > div { display:flex; justify-content:center; gap:3px; overflow:hidden; }
   .xp-gallery-widget-nav > div button { width:5px; height:5px; flex:0 0 5px; padding:0; border:0; border-radius:50%; background:#a9a9a2; cursor:pointer; }
   .xp-gallery-widget-nav > div button.active { background:#1f65c7; box-shadow:0 0 0 1px #fff, 0 0 0 2px #5d83b7; }
+
+  /* Compact Winamp-inspired now-playing widget */
+  .xp-music-widget {
+    position:absolute;
+    z-index:4;
+    right:26px;
+    top:395px;
+    width:244px;
+    padding:5px;
+    color:#161616;
+    background:linear-gradient(#d8d8d8,#999 48%,#c9c9c9 49%,#858585);
+    border:2px solid #4c4c4c;
+    box-shadow:inset 1px 1px #fff, inset -1px -1px #4b4b4b, 0 5px 14px rgba(0,0,0,.25);
+    user-select:none;
+  }
+  .xp-music-top { display:grid; grid-template-columns:42px 1fr; gap:5px; align-items:stretch; }
+  .xp-music-disc {
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    align-self:center;
+    border-radius:50%;
+    color:#c9ff7b;
+    background:
+      radial-gradient(circle at center,#8da742 0 8%,#171717 9% 19%,#3c3c3c 20% 22%,#101010 23% 42%,#3d3d3d 43% 45%,#0b0b0b 46%);
+    border:1px solid #1c1c1c;
+    box-shadow:inset 0 0 0 2px #777, 0 1px 2px rgba(0,0,0,.5);
+    animation:xpDiscSpin 4.8s linear infinite;
+  }
+  .xp-music-disc span { font-size:12px; transform:rotate(20deg); }
+  @keyframes xpDiscSpin { to { transform:rotate(360deg); } }
+
+  .xp-music-screen {
+    min-width:0;
+    height:49px;
+    padding:4px 5px 3px;
+    overflow:hidden;
+    background:#071108;
+    border:2px inset #555;
+    color:#a9ee73;
+    font-family:"Lucida Console","Courier New",monospace;
+    text-shadow:0 0 4px rgba(137,255,88,.25);
+  }
+  .xp-music-label {
+    display:block;
+    color:#799b62;
+    font-size:6px;
+    line-height:1;
+    letter-spacing:.08em;
+  }
+  .xp-music-screen strong {
+    display:block;
+    margin-top:3px;
+    overflow:hidden;
+    font-size:8.5px;
+    line-height:1.1;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+  .xp-winamp-eq {
+    height:18px;
+    display:flex;
+    align-items:flex-end;
+    gap:2px;
+    margin-top:2px;
+    overflow:hidden;
+  }
+  .xp-winamp-eq i {
+    width:3px;
+    height:65%;
+    display:block;
+    background:linear-gradient(to top,#65c94e 0 48%,#d7dc46 49% 76%,#e7793b 77% 100%);
+    transform-origin:bottom;
+    animation:xpEqBounce .62s ease-in-out infinite alternate;
+  }
+  .xp-winamp-eq i:nth-child(2n) { animation-duration:.42s; }
+  .xp-winamp-eq i:nth-child(3n) { animation-duration:.78s; }
+  .xp-winamp-eq i:nth-child(4n) { animation-duration:.53s; }
+  @keyframes xpEqBounce {
+    0% { transform:scaleY(.18); opacity:.72; }
+    45% { transform:scaleY(.95); opacity:1; }
+    100% { transform:scaleY(.4); opacity:.86; }
+  }
+
+  .xp-music-controls {
+    height:21px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    margin-top:4px;
+    padding:0 3px;
+    color:#252525;
+    background:#b8b8b8;
+    border:1px solid #686868;
+    box-shadow:inset 1px 1px #e9e9e9;
+    font:700 6.5px/1 Tahoma,sans-serif;
+    text-transform:uppercase;
+  }
+  .xp-music-controls span:nth-child(2) { color:#555; }
+  .xp-music-controls button {
+    margin-left:auto;
+    min-height:15px;
+    padding:1px 6px;
+    color:#1a1a1a;
+    background:linear-gradient(#eee,#a9a9a9);
+    border:1px solid #555;
+    box-shadow:inset 1px 1px #fff;
+    font:700 7px Tahoma,sans-serif;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .xp-music-controls button:active {
+    box-shadow:inset 1px 1px #555;
+    background:#aaa;
+  }
 
   .xp-window { position:absolute; min-width:470px; min-height:330px; display:flex; flex-direction:column; background:#ece9d8; border:3px solid #0b54db; border-radius:8px 8px 3px 3px; box-shadow:0 10px 28px rgba(0,0,0,.38), inset 0 0 0 1px #4f8cff; overflow:hidden; }
   .xp-window-max { inset:0 0 40px 0 !important; width:auto !important; height:auto !important; border-radius:0; }
@@ -2071,6 +2215,8 @@ const styles = String.raw`
     .xp-gallery-widget-copy { min-height:44px; padding:6px 7px 5px; }
     .xp-gallery-widget-copy strong { font-size:9px; }
     .xp-gallery-widget-copy span { font-size:7.8px; -webkit-line-clamp:1; }
+    .xp-music-widget { right:10px; top:326px; width:196px; }
+    .xp-music-screen strong { font-size:7.7px; }
   }
 
   @media (max-width: 820px) {
@@ -2087,6 +2233,17 @@ const styles = String.raw`
     .xp-gallery-widget-nav { height:24px; grid-template-columns:24px 1fr 24px; padding:2px 4px; }
     .xp-gallery-widget-nav > button { height:18px; font-size:14px; }
     .xp-gallery-widget-nav > div button { width:4px; height:4px; flex-basis:4px; }
+    .xp-music-widget { right:6px; top:284px; width:154px; padding:4px; border-width:1px; }
+    .xp-music-top { grid-template-columns:32px 1fr; gap:4px; }
+    .xp-music-disc { width:32px; height:32px; }
+    .xp-music-screen { height:39px; padding:3px 4px; }
+    .xp-music-label { display:none; }
+    .xp-music-screen strong { margin-top:0; font-size:7px; }
+    .xp-winamp-eq { height:19px; gap:1px; margin-top:2px; }
+    .xp-winamp-eq i { width:2px; }
+    .xp-music-controls { height:18px; gap:3px; margin-top:3px; font-size:5.5px; }
+    .xp-music-controls span:nth-child(2) { display:none; }
+    .xp-music-controls button { min-height:13px; padding:0 4px; font-size:5.8px; }
     .xp-desktop-grid { left:10px; top:10px; grid-template-rows:repeat(4,80px); grid-auto-columns:78px; gap:5px; }
     .xp-desktop-icon { width:74px; min-height:73px; }
     .xp-desktop-icon-art { width:39px; height:39px; }
