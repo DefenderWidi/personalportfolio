@@ -74,11 +74,33 @@ const profile = {
 
 const projects = [
   {
+    title: "Tinggi Jenjang Tambang",
+    desc: "Web-based mining bench-height monitoring application developed to support measurement and reporting during production-engineering work at BUMA.",
+    tag: "Mining Tech · Web App · Monitoring",
+    image: "/tinggijenjang.jpg",
+    link: "https://tinggijenjang.vercel.app/",
+  },
+  {
+    title: "PT Sawitri Company Profile",
+    desc: "Responsive front-end company profile landing page for PT Sawitri Sukses Sejahtera, presenting company profile, services, credentials, and contact information.",
+    tag: "Front-end · Company Profile · Responsive Web",
+    image: "/sawitri.jpg",
+    link: "https://sawitri.pranaya.my.id/",
+  },
+  {
     title: "Komdigi Executive Dashboard",
     desc: "Executive data dashboard for Kabupaten Semarang. Built with system architecture, ERD/activity diagrams, UI/UX, SSR-oriented front-end implementation, and technical documentation.",
     tag: "Dashboard · Full Stack · UI/UX",
     image: "/kominfo-dashboard.png",
     github: "https://github.com/DefenderWidi/dashboardkominfo.git",
+  },
+  {
+    title: "Multimodal Q&A with Qwen + RAG",
+    desc: "Final project: multimodal question answering on images and audio using the Qwen model with Retrieval-Augmented Generation (RAG).",
+    tag: "AI · Qwen · RAG · Multimodal",
+    image: "",
+    document: "/Buku TA_Defender Artha.pdf",
+    documentLabel: "Read Thesis",
   },
   {
     title: "BeMySample App",
@@ -123,12 +145,6 @@ const projects = [
     image: "/lokerland.png",
     link: "https://defender.reactjssanbercode.my.id/",
   },
-  {
-    title: "Multimodal Q&A with Qwen + RAG",
-    desc: "Final project: multimodal question answering on images and audio using the Qwen model with Retrieval-Augmented Generation (RAG).",
-    tag: "AI · Qwen · RAG · Multimodal",
-    image: "",
-  },
 ];
 
 const experience = [
@@ -153,6 +169,8 @@ const experience = [
       "Developed an IoT energy-monitoring system that transmitted real-time electricity consumption data to a centralized dashboard.",
       "Worked on sensor integration, microcontroller programming, and efficient network-based data communication.",
     ],
+    attachment: "/Presentation - BMS.pdf",
+    attachmentLabel: "View BMS Presentation",
   },
   {
     role: "Front-end Developer",
@@ -934,44 +952,30 @@ Portfolio: builtbydefender.vercel.app`,
               <label className="xp-search"><Search size={15} /><input value={projectQuery} onChange={(e) => setProjectQuery(e.target.value)} placeholder="Search projects" /></label>
             </div>
 
-            <div className="xp-folder-layout">
-              <aside className="xp-sidebar">
-                <div className="xp-sidebar-box">
-                  <div className="xp-sidebar-title">Project Tasks</div>
-                  <button onClick={() => setProjectQuery("AI")}><Bot size={15} /> Show AI work</button>
-                  <button onClick={() => setProjectQuery("IoT")}><CircuitBoard size={15} /> Show IoT work</button>
-                  <button onClick={() => setProjectQuery("React")}><Code2 size={15} /> Show web work</button>
-                  <button onClick={() => setProjectQuery("")}><FolderOpen size={15} /> Show all projects</button>
-                </div>
-                <div className="xp-sidebar-box">
-                  <div className="xp-sidebar-title">Details</div>
-                  <p>{filteredProjects.length} item(s)</p>
-                  <p>Selected software, web, mobile, IoT, and AI work.</p>
-                </div>
-              </aside>
-
-              <div className="xp-project-grid">
-                {filteredProjects.map((project) => (
-                  <article className="xp-project-card" key={project.title}>
-                    <div className="xp-project-preview">
-                      {project.image ? (
-                        <img src={project.image} alt={project.title} />
-                      ) : (
-                        <div className="xp-ai-preview"><Bot size={42} /><span>Qwen + RAG</span></div>
+            <div className="xp-project-grid">
+              {filteredProjects.map((project) => (
+                <article className="xp-project-card" key={project.title}>
+                  <div className="xp-project-preview">
+                    {project.image ? (
+                      <img src={project.image} alt={project.title} />
+                    ) : (
+                      <div className="xp-ai-preview"><Bot size={42} /><span>Qwen + RAG</span></div>
+                    )}
+                  </div>
+                  <div className="xp-project-content">
+                    <h3>{project.title}</h3>
+                    <span className="xp-tag">{project.tag}</span>
+                    <p>{project.desc}</p>
+                    <div className="xp-project-actions">
+                      {project.github && <XPButton href={project.github}><Github size={14} /> GitHub</XPButton>}
+                      {project.link && <XPButton href={project.link} primary><ExternalLink size={14} /> Live Site</XPButton>}
+                      {"document" in project && project.document && (
+                        <XPButton href={project.document}><FileText size={14} /> {project.documentLabel || "View Document"}</XPButton>
                       )}
                     </div>
-                    <div className="xp-project-content">
-                      <h3>{project.title}</h3>
-                      <span className="xp-tag">{project.tag}</span>
-                      <p>{project.desc}</p>
-                      <div className="xp-project-actions">
-                        {project.github && <XPButton href={project.github}><Github size={14} /> GitHub</XPButton>}
-                        {project.link && <XPButton href={project.link} primary><ExternalLink size={14} /> Open</XPButton>}
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         );
@@ -993,6 +997,11 @@ Portfolio: builtbydefender.vercel.app`,
                       <div className="xp-job-meta"><span>{item.period}</span><span>{item.type}</span></div>
                     </div>
                     <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                    {"attachment" in item && item.attachment && (
+                      <div className="xp-job-actions">
+                        <XPButton href={item.attachment}><FileText size={14} /> {item.attachmentLabel || "View Document"}</XPButton>
+                      </div>
+                    )}
                   </div>
                 </article>
               ))}
@@ -1762,6 +1771,8 @@ const styles = String.raw`
   .xp-job-meta span { padding:2px 5px; color:#555; background:#efefef; border:1px solid #cecece; font-size:9px; }
   .xp-timeline-card ul { margin:8px 0 0; padding-left:17px; color:#565656; }
   .xp-timeline-card li { margin:4px 0; font-size:10.5px; line-height:1.45; }
+  .xp-job-actions { display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; }
+  .xp-job-actions .xp-action { min-height:25px; padding:4px 8px; font-size:9.5px; }
 
   .xp-skill-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:11px; }
   .xp-skill-group { padding:12px; border:1px solid #becbda; background:linear-gradient(#fff,#f3f8ff); }
