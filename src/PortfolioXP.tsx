@@ -290,7 +290,6 @@ type AppId =
   | "awards"
   | "writing"
   | "contact"
-  | "browser"
   | "recycle"
   | "notepad"
   | "cmd"
@@ -298,8 +297,7 @@ type AppId =
   | "computer"
   | "pictureviewer"
   | "display"
-  | "paint"
-  | "media";
+;
 
 type WindowState = {
   open: boolean;
@@ -320,8 +318,7 @@ type MineStatus = "playing" | "won" | "lost";
 type ThemeId = "blue" | "olive" | "silver" | "defender";
 type WallpaperId = "bliss" | "grid" | "sunset" | "midnight";
 type DisplayTab = "themes" | "desktop" | "screensaver" | "appearance";
-type ComputerPath = "root" | "c" | "pictures" | "education" | "competitions" | "organizations" | "internships" | "media" | "documents";
-type PaintPointerEvent = { clientX: number; clientY: number; pointerId: number; currentTarget: HTMLCanvasElement };
+type ComputerPath = "root" | "c" | "pictures" | "education" | "competitions" | "organizations" | "internships" | "documents";
 
 type GalleryItem = {
   id: string;
@@ -350,15 +347,7 @@ const galleryItems: GalleryItem[] = [
   { id: "buma-2", album: "internships", title: "BUMA Internship — Team Documentation", caption: "Production engineering team and operational-site experience.", src: "/gallery/magangPTBUMA2.jpeg" },
   { id: "buma-3", album: "internships", title: "BUMA Internship — Mining Site", caption: "Field documentation from the BUMA production-engineering internship.", src: "/gallery/magangPTBUMA3.jpeg" },
 
-  { id: "kse-its-feature", album: "media", title: "ITS Home of Champions — KSE Business Plan Competition", caption: "ITS social-media recognition for 2nd Place at the KSE Business Plan Competition · Diponegoro University · March 2024", src: "/gallery/KSEDiponation.jpeg" },
-];
-
-const mediaTracks = [
-  { title: "Komdigi Executive Dashboard", artist: "Full Stack · UI/UX · System Architecture", body: "An executive dashboard built with ERD/activity-diagram design, SSR-oriented front-end work, and technical documentation." },
-  { title: "Qwen + RAG", artist: "Artificial Intelligence · Multimodal", body: "Final project on multimodal question answering for images and audio using Qwen and Retrieval-Augmented Generation." },
-  { title: "BUMA Digital Improvement", artist: "Mining · Operations · Web", body: "Production-engineering exposure combined with a web-based bench-height monitoring system and data-driven operational improvement." },
-  { title: "IoT Energy Monitoring", artist: "Sensors · Microcontrollers · Real-time Data", body: "IoT hardware development that collected electricity-consumption data and transmitted it to a centralized dashboard." },
-  { title: "Writing & Communication", artist: "Technical Writing · Copywriting", body: "A complementary skill set for explaining technical ideas clearly across articles, documentation, and product communication." },
+  { id: "kse-its-feature", album: "competitions", title: "ITS Home of Champions — KSE Business Plan Competition", caption: "ITS social-media recognition for 2nd Place at the KSE Business Plan Competition · Diponegoro University · March 2024", src: "/gallery/KSEDiponation.jpeg" },
 ];
 
 const MINE_SIZE = 8;
@@ -439,13 +428,10 @@ const appList = [
   { id: "awards" as AppId, label: "Awards", icon: Trophy, desktopLabel: "Awards" },
   { id: "writing" as AppId, label: "Writing", icon: PenTool, desktopLabel: "Writing" },
   { id: "contact" as AppId, label: "Contact Me", icon: Mail, desktopLabel: "Contact Me" },
-  { id: "browser" as AppId, label: "Internet Explorer", icon: Globe2, desktopLabel: "Internet Explorer" },
   { id: "recycle" as AppId, label: "Recycle Bin", icon: Recycle, desktopLabel: "Recycle Bin" },
   { id: "notepad" as AppId, label: "Notepad", icon: FileText, desktopLabel: "Notepad" },
   { id: "cmd" as AppId, label: "Command Prompt", icon: Code2, desktopLabel: "Command Prompt" },
   { id: "minesweeper" as AppId, label: "Minesweeper", icon: Square, desktopLabel: "Minesweeper" },
-  { id: "paint" as AppId, label: "Paint", icon: PenTool, desktopLabel: "Paint" },
-  { id: "media" as AppId, label: "Windows Media Player", icon: Volume2, desktopLabel: "Windows Media Player" },
   { id: "display" as AppId, label: "Display Properties", icon: Monitor, desktopLabel: "Display Properties" },
   { id: "pictureviewer" as AppId, label: "Windows Picture and Fax Viewer", icon: Monitor, desktopLabel: "Picture Viewer" },
 ];
@@ -464,7 +450,6 @@ const initialWindows: Record<AppId, WindowState> = {
   awards: { open: false, minimized: false, maximized: false, z: 1 },
   writing: { open: false, minimized: false, maximized: false, z: 1 },
   contact: { open: false, minimized: false, maximized: false, z: 1 },
-  browser: { open: false, minimized: false, maximized: false, z: 1 },
   recycle: { open: false, minimized: false, maximized: false, z: 1 },
   notepad: { open: false, minimized: false, maximized: false, z: 1 },
   cmd: { open: false, minimized: false, maximized: false, z: 1 },
@@ -472,8 +457,6 @@ const initialWindows: Record<AppId, WindowState> = {
   computer: { open: false, minimized: false, maximized: false, z: 1 },
   pictureviewer: { open: false, minimized: false, maximized: false, z: 1 },
   display: { open: false, minimized: false, maximized: false, z: 1 },
-  paint: { open: false, minimized: false, maximized: false, z: 1 },
-  media: { open: false, minimized: false, maximized: false, z: 1 },
 };
 
 const windowPlacement: Record<AppId, { x: string; y: string; w: string; h: string }> = {
@@ -485,7 +468,6 @@ const windowPlacement: Record<AppId, { x: string; y: string; w: string; h: strin
   awards: { x: "26%", y: "10%", w: "min(760px, 64vw)", h: "min(590px, 68vh)" },
   writing: { x: "24%", y: "9%", w: "min(820px, 68vw)", h: "min(620px, 71vh)" },
   contact: { x: "29%", y: "16%", w: "min(660px, 58vw)", h: "min(520px, 62vh)" },
-  browser: { x: "13%", y: "5%", w: "min(980px, 78vw)", h: "min(700px, 80vh)" },
   recycle: { x: "31%", y: "13%", w: "min(680px, 58vw)", h: "min(520px, 62vh)" },
   notepad: { x: "25%", y: "10%", w: "min(720px, 64vw)", h: "min(580px, 68vh)" },
   cmd: { x: "20%", y: "12%", w: "min(760px, 66vw)", h: "min(520px, 62vh)" },
@@ -493,8 +475,6 @@ const windowPlacement: Record<AppId, { x: string; y: string; w: string; h: strin
   computer: { x: "12%", y: "6%", w: "min(900px, 76vw)", h: "min(680px, 78vh)" },
   pictureviewer: { x: "20%", y: "7%", w: "min(800px, 70vw)", h: "min(650px, 76vh)" },
   display: { x: "28%", y: "11%", w: "min(660px, 62vw)", h: "min(560px, 68vh)" },
-  paint: { x: "16%", y: "7%", w: "min(900px, 76vw)", h: "min(690px, 78vh)" },
-  media: { x: "22%", y: "9%", w: "min(760px, 68vw)", h: "min(590px, 70vh)" },
 };
 
 function XPButton({
@@ -527,27 +507,23 @@ function PortfolioXP() {
   const [soundOn, setSoundOn] = useState(true);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [notification, setNotification] = useState<{ title: string; text: string } | null>(null);
-  const [browserInput, setBrowserInput] = useState(profile.portfolio);
-  const [browserPage, setBrowserPage] = useState<"home" | "portfolio" | "github" | "linkedin" | "offline">("home");
   const [binEmptied, setBinEmptied] = useState(false);
   const [secretOpen, setSecretOpen] = useState(false);
   const [booting, setBooting] = useState(true);
   const [bsod, setBsod] = useState(false);
   const [screensaver, setScreensaver] = useState(false);
-  const [noteFile, setNoteFile] = useState("README.txt");
-  const [noteText, setNoteText] = useState(`DEFENDER README.txt
+  const [noteFile, setNoteFile] = useState("PROFILE.txt");
+  const [noteText, setNoteText] = useState(`DEFENDER PROFILE.txt
 
-Hello! I'm Defender, a Computer Engineering graduate who likes building useful systems.
+Computer Engineering graduate focused on software engineering, web applications, Artificial Intelligence, IoT, and digital systems.
 
-Current focus:
-- Software & web engineering
-- Artificial Intelligence / RAG
-- IoT & real-time monitoring
-- Digital products and system design
+Selected strengths:
+- Full-stack and front-end development
+- Multimodal AI with Qwen + RAG
+- IoT and real-time monitoring
+- System architecture and technical documentation
 
-Try opening Command Prompt and type: help
-
-P.S. This Notepad is editable. Feel free to leave a message before refreshing the page.`);
+Explore My Projects, Experience, and My Computer for selected work and documentation.`);
   const [cmdInput, setCmdInput] = useState("");
   const [cmdHistory, setCmdHistory] = useState<string[]>([
     "Microsoft Windows XP [Version 5.1.2600]",
@@ -570,13 +546,7 @@ P.S. This Notepad is editable. Feel free to leave a message before refreshing th
     return (window.localStorage.getItem("defender-xp-wallpaper") as WallpaperId) || "bliss";
   });
   const [displayTab, setDisplayTab] = useState<DisplayTab>("themes");
-  const [paintColor, setPaintColor] = useState("#000000");
-  const [paintSize, setPaintSize] = useState(3);
-  const [paintTool, setPaintTool] = useState<"pencil" | "eraser">("pencil");
-  const [selectedTrack, setSelectedTrack] = useState(0);
-  const [mediaPlaying, setMediaPlaying] = useState(false);
-  const paintCanvasRef = useRef<HTMLCanvasElement | null>(null);
-  const paintingRef = useRef(false);
+  const [galleryWidgetIndex, setGalleryWidgetIndex] = useState(0);
   const zRef = useRef(20);
 
   const showNotification = (title: string, text: string) => {
@@ -624,15 +594,6 @@ P.S. This Notepad is editable. Feel free to leave a message before refreshing th
     setContextMenu(null);
   };
 
-  const navigateBrowser = (target = browserInput) => {
-    const value = target.trim().toLowerCase();
-    if (!value || value.includes("builtbydefender") || value === "home") setBrowserPage("portfolio");
-    else if (value.includes("github")) setBrowserPage("github");
-    else if (value.includes("linkedin")) setBrowserPage("linkedin");
-    else setBrowserPage("offline");
-    setBrowserInput(target);
-    playSound("open");
-  };
 
   useEffect(() => {
     if (!booting) return;
@@ -678,6 +639,14 @@ P.S. This Notepad is editable. Feel free to leave a message before refreshing th
     const timer = window.setInterval(() => setClock(new Date()), 30_000);
     return () => window.clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (booting || bsod || screensaver) return;
+    const timer = window.setInterval(() => {
+      setGalleryWidgetIndex((current) => (current + 1) % galleryItems.length);
+    }, 6000);
+    return () => window.clearInterval(timer);
+  }, [booting, bsod, screensaver]);
 
   const filteredProjects = useMemo(() => {
     const q = projectQuery.trim().toLowerCase();
@@ -783,32 +752,30 @@ P.S. This Notepad is editable. Feel free to leave a message before refreshing th
 
   const openNotepadDocument = (name: string) => {
     const docs: Record<string, string> = {
-      "README.txt": `DEFENDER README.txt
+      "PROFILE.txt": `DEFENDER PROFILE.txt
 
-Hello! I'm Defender, a Computer Engineering graduate who likes building useful systems.
+Computer Engineering graduate from Institut Teknologi Sepuluh Nopember (ITS).
 
-Current focus:
+Focus areas:
 - Software & web engineering
 - Artificial Intelligence / RAG
 - IoT & real-time monitoring
 - Digital products and system design
 
-Try opening Command Prompt and type: help`,
-      "skills.txt": `CORE_SKILLS.txt
+Open My Projects and Experience for selected work.`,
+      "SKILLS.txt": `TECHNICAL SKILLS.txt
 
 Web: React, TypeScript, JavaScript, Tailwind CSS, Next.js, Laravel
 Back-end: Node.js, Express, PostgreSQL, MySQL, MongoDB
 AI: Qwen, Retrieval-Augmented Generation, Multimodal AI
 IoT: Sensors, microcontrollers, real-time monitoring
 Tools: Git/GitHub, Figma, Postman, technical documentation`,
-      "hire_me.txt": `HIRE_ME.txt
-
-Looking for someone who can bridge engineering, product thinking, and communication?
-
-I'm open to software engineering, front-end/full-stack, IoT, AI, and digital-product opportunities.
+      "CONTACT.txt": `CONTACT.txt
 
 Email: ${profile.email}
-LinkedIn: linkedin.com/in/defenderwidi`,
+LinkedIn: linkedin.com/in/defenderwidi
+GitHub: github.com/DefenderWidi
+Portfolio: builtbydefender.vercel.app`,
     };
     setNoteFile(name);
     setNoteText(docs[name] ?? "Untitled document");
@@ -829,53 +796,11 @@ LinkedIn: linkedin.com/in/defenderwidi`,
   const computerUp = () => {
     const parent: Record<ComputerPath, ComputerPath> = {
       root: "root", c: "root", pictures: "root", education: "pictures", competitions: "pictures", organizations: "pictures",
-      internships: "pictures", media: "pictures", documents: "root",
+      internships: "pictures", documents: "root",
     };
     setComputerPath(parent[computerPath]);
   };
 
-  const paintPointer = (event: PaintPointerEvent, start = false) => {
-    const canvas = paintCanvasRef.current;
-    if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = (event.clientX - rect.left) * (canvas.width / rect.width);
-    const y = (event.clientY - rect.top) * (canvas.height / rect.height);
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    if (start) {
-      paintingRef.current = true;
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      return;
-    }
-    if (!paintingRef.current) return;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.lineWidth = paintTool === "eraser" ? Math.max(12, paintSize * 4) : paintSize;
-    ctx.strokeStyle = paintTool === "eraser" ? "#ffffff" : paintColor;
-    ctx.lineTo(x, y);
-    ctx.stroke();
-  };
-
-  const clearPaint = () => {
-    const canvas = paintCanvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    showNotification("Paint", "Canvas cleared. Fresh masterpiece territory.");
-  };
-
-  const savePaint = () => {
-    const canvas = paintCanvasRef.current;
-    if (!canvas) return;
-    const link = document.createElement("a");
-    link.download = "defender-paint.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-    showNotification("Paint", "Your masterpiece was exported as defender-paint.png.");
-  };
 
   const runCommand = () => {
     const raw = cmdInput.trim();
@@ -897,7 +822,7 @@ LinkedIn: linkedin.com/in/defenderwidi`,
       "  experience   show engineering/dev roles",
       "  contact      show contact info",
       "  dir          list this portfolio's apps",
-      "  open <app>   open computer/projects/resume/notepad/minesweeper/internet/paint/media/display",
+      "  open <app>   open computer/projects/resume/notepad/minesweeper/display",
       "  pictures     open Defender's Pictures",
       "  theme        open Display Properties",
       "  screensaver  start the XP screensaver",
@@ -911,7 +836,7 @@ LinkedIn: linkedin.com/in/defenderwidi`,
     else if (command === "projects") output = projects.map((project, index) => `${index + 1}. ${project.title} [${project.tag}]`);
     else if (command === "experience") output = experience.slice(0, 7).map((item) => `${item.role} @ ${item.company} — ${item.period}`);
     else if (command === "contact") output = [`Email: ${profile.email}`, "LinkedIn: linkedin.com/in/defenderwidi", "GitHub: github.com/DefenderWidi"];
-    else if (command === "dir") output = ["MYCOMPUTER.EXE", "ABOUT.EXE", "PROJECTS.EXE", "EXPERIENCE.EXE", "RESUME.PDF", "NOTEPAD.EXE", "MSPAINT.EXE", "WMPLAYER.EXE", "MINESWEEPER.EXE", "IEXPLORE.EXE"];
+    else if (command === "dir") output = ["MYCOMPUTER.EXE", "ABOUT.EXE", "PROJECTS.EXE", "EXPERIENCE.EXE", "RESUME.PDF", "NOTEPAD.EXE", "MINESWEEPER.EXE", "DISPLAY.CPL"];
     else if (command === "pictures") { setComputerPath("pictures"); launchApp("computer"); output = ["Opening Defender's Pictures..."]; }
     else if (command === "theme") { launchApp("display"); output = ["Opening Display Properties..."]; }
     else if (command === "date" || command === "time") output = [new Date().toString()];
@@ -924,8 +849,8 @@ LinkedIn: linkedin.com/in/defenderwidi`,
       const target = command.slice(5).trim();
       const map: Record<string, AppId> = {
         computer: "computer", projects: "projects", resume: "resume", notepad: "notepad", minesweeper: "minesweeper",
-        internet: "browser", browser: "browser", skills: "skills", experience: "experience", contact: "contact",
-        paint: "paint", media: "media", player: "media", display: "display", theme: "display",
+        skills: "skills", experience: "experience", contact: "contact",
+        display: "display", theme: "display",
       };
       if (map[target]) { launchApp(map[target]); output = [`Opening ${target}...`]; }
       else output = [`'${target}' is not a recognized application.`];
@@ -1207,7 +1132,7 @@ LinkedIn: linkedin.com/in/defenderwidi`,
                 root: "My Computer", c: "C:\\Defender", pictures: "C:\\Defender\\My Pictures",
                 education: "C:\\Defender\\My Pictures\\Education & Milestones", competitions: "C:\\Defender\\My Pictures\\Competitions",
                 organizations: "C:\\Defender\\My Pictures\\Organizations", internships: "C:\\Defender\\My Pictures\\Internships",
-                media: "C:\\Defender\\My Pictures\\Media & Recognition", documents: "C:\\Defender\\Shared Documents",
+                documents: "C:\\Defender\\Shared Documents",
               } as Record<ComputerPath, string>)[computerPath]}</div>
               <button className="xp-toolbar-btn" onClick={() => showNotification("My Computer", "Folder view refreshed.")}><RefreshCw size={14} /> Refresh</button>
             </div>
@@ -1233,9 +1158,8 @@ LinkedIn: linkedin.com/in/defenderwidi`,
                     <h3 className="xp-explorer-heading">Files Stored on This Computer</h3>
                     <div className="xp-computer-grid">
                       <button onClick={() => setComputerPath("c")}><span className="xp-drive-icon">C:</span><div><b>Local Disk (C:)</b><small>Projects, apps & career files</small></div></button>
-                      <button onClick={() => setComputerPath("pictures")}><span className="xp-folder-big">▣</span><div><b>Defender's Pictures</b><small>Education, competitions, organizations & internships</small></div></button>
-                      <button onClick={() => setComputerPath("documents")}><span className="xp-folder-big">▤</span><div><b>Shared Documents</b><small>Resume, notes & certificates</small></div></button>
-                      <button onClick={() => showNotification("My Network Places", "No corporate VPN required. GitHub is one Internet Explorer away.")}><span className="xp-network-big">◎</span><div><b>My Network Places</b><small>Internet & professional links</small></div></button>
+                      <button onClick={() => setComputerPath("pictures")}><span className="xp-folder-big">▣</span><div><b>Defender's Pictures</b><small>Education, competitions & recognition, organizations, internships</small></div></button>
+                      <button onClick={() => setComputerPath("documents")}><span className="xp-folder-big">▤</span><div><b>Shared Documents</b><small>Resume, profile & technical notes</small></div></button>
                     </div>
                   </>
                 )}
@@ -1255,22 +1179,20 @@ LinkedIn: linkedin.com/in/defenderwidi`,
                 {computerPath === "pictures" && (
                   <>
                     <h3 className="xp-explorer-heading">Defender's Pictures</h3>
-                    <p className="xp-gallery-note">{galleryItems.length} documented photos loaded from <b>public/gallery</b>. Only moments with an actual image are shown here.</p>
+                    <p className="xp-gallery-note">{galleryItems.length} selected photos documenting academic milestones, competitions and recognition, organizations, and professional experiences.</p>
                     <div className="xp-album-grid">
                       <button onClick={() => setComputerPath("education")}><span>🎓</span><b>Education & Milestones</b><small>{galleryItems.filter((x) => x.album === "education").length} photo(s)</small></button>
                       <button onClick={() => setComputerPath("competitions")}><span>🏆</span><b>Competitions</b><small>{galleryItems.filter((x) => x.album === "competitions").length} photo(s)</small></button>
                       <button onClick={() => setComputerPath("organizations")}><span>👥</span><b>Organizations</b><small>{galleryItems.filter((x) => x.album === "organizations").length} photo(s)</small></button>
                       <button onClick={() => setComputerPath("internships")}><span>💼</span><b>Internships</b><small>{galleryItems.filter((x) => x.album === "internships").length} photo(s)</small></button>
-                      <button onClick={() => setComputerPath("media")}><span>📰</span><b>Media & Recognition</b><small>{galleryItems.filter((x) => x.album === "media").length} photo(s)</small></button>
                     </div>
                   </>
                 )}
 
-                {["education", "competitions", "organizations", "internships", "media"].includes(computerPath) && (
+                {["education", "competitions", "organizations", "internships"].includes(computerPath) && (
                   <>
                     <h3 className="xp-explorer-heading">{
                       computerPath === "education" ? "Education & Milestones" :
-                      computerPath === "media" ? "Media & Recognition" :
                       computerPath.charAt(0).toUpperCase() + computerPath.slice(1)
                     }</h3>
                     <div className="xp-thumbnail-grid">
@@ -1292,8 +1214,8 @@ LinkedIn: linkedin.com/in/defenderwidi`,
                     <h3 className="xp-explorer-heading">Shared Documents</h3>
                     <div className="xp-file-list-large">
                       <button onClick={() => launchApp("resume")}><FileText size={32} /><div><b>Defender_Artha_Widiprasetyo_CV.pdf</b><small>Latest professional resume</small></div></button>
-                      <button onClick={() => { openNotepadDocument("README.txt"); launchApp("notepad"); }}><FileText size={32} /><div><b>README.txt</b><small>Portfolio system notes</small></div></button>
-                      <button onClick={() => showNotification("Certificates", "Certificate archive placeholder created. Add files when you're ready.")}><FolderOpen size={32} /><div><b>Certificates</b><small>Ready for award and internship evidence</small></div></button>
+                      <button onClick={() => { openNotepadDocument("PROFILE.txt"); launchApp("notepad"); }}><FileText size={32} /><div><b>PROFILE.txt</b><small>Professional profile summary</small></div></button>
+                      <button onClick={() => { openNotepadDocument("SKILLS.txt"); launchApp("notepad"); }}><FileText size={32} /><div><b>TECHNICAL_SKILLS.txt</b><small>Selected technologies and engineering skills</small></div></button>
                     </div>
                   </>
                 )}
@@ -1334,110 +1256,18 @@ LinkedIn: linkedin.com/in/defenderwidi`,
               )}
 
               {displayTab === "desktop" && (
-                <div className="xp-display-options"><h3>Background</h3><p>Choose a desktop wallpaper. Your choice is remembered after refresh.</p><div className="xp-wallpaper-list"><button className={wallpaper === "bliss" ? "active" : ""} onClick={() => setWallpaper("bliss")}>Bliss</button><button className={wallpaper === "grid" ? "active" : ""} onClick={() => setWallpaper("grid")}>Tech Grid</button><button className={wallpaper === "sunset" ? "active" : ""} onClick={() => setWallpaper("sunset")}>Sunset</button><button className={wallpaper === "midnight" ? "active" : ""} onClick={() => setWallpaper("midnight")}>Midnight</button></div></div>
+                <div className="xp-display-options"><h3>Background</h3><p>Choose a desktop wallpaper. Your selection is saved for your next visit.</p><div className="xp-wallpaper-list"><button className={wallpaper === "bliss" ? "active" : ""} onClick={() => setWallpaper("bliss")}>Bliss</button><button className={wallpaper === "grid" ? "active" : ""} onClick={() => setWallpaper("grid")}>Tech Grid</button><button className={wallpaper === "sunset" ? "active" : ""} onClick={() => setWallpaper("sunset")}>Sunset</button><button className={wallpaper === "midnight" ? "active" : ""} onClick={() => setWallpaper("midnight")}>Midnight</button></div></div>
               )}
 
               {displayTab === "screensaver" && (
-                <div className="xp-display-options"><h3>Screen saver</h3><select defaultValue="defender"><option value="defender">Defender XP</option><option value="none">(None)</option></select><p>The screensaver only starts manually so it never interrupts a recruiter reading your portfolio.</p><button className="xp-action xp-action-primary" onClick={() => setScreensaver(true)}>Preview</button></div>
+                <div className="xp-display-options"><h3>Screen saver</h3><select defaultValue="defender"><option value="defender">Defender XP</option><option value="none">(None)</option></select><p>Preview the Defender XP screen saver.</p><button className="xp-action xp-action-primary" onClick={() => setScreensaver(true)}>Preview</button></div>
               )}
 
               {displayTab === "appearance" && (
-                <div className="xp-display-options"><h3>Windows and buttons</h3><p>Current scheme: <b>{theme === "blue" ? "Windows XP Blue" : theme === "olive" ? "Windows XP Olive Green" : theme === "silver" ? "Windows XP Silver" : "Defender XP"}</b></p><div className="xp-appearance-sample"><div className="xp-sample-title">Active Window</div><div>Tahoma · compact XP controls · portfolio edition</div></div></div>
+                <div className="xp-display-options"><h3>Windows and buttons</h3><p>Current scheme: <b>{theme === "blue" ? "Windows XP Blue" : theme === "olive" ? "Windows XP Olive Green" : theme === "silver" ? "Windows XP Silver" : "Defender XP"}</b></p><div className="xp-appearance-sample"><div className="xp-sample-title">Active Window</div><div>Tahoma · compact XP controls · Defender XP</div></div></div>
               )}
             </div>
             <div className="xp-display-footer"><button className="xp-action" onClick={() => { setTheme("blue"); setWallpaper("bliss"); }}>Restore Defaults</button><button className="xp-action xp-action-primary" onClick={() => showNotification("Display Properties", "Display settings applied and saved.")}>Apply</button></div>
-          </div>
-        );
-
-      case "paint":
-        return (
-          <div className="xp-page xp-paint-page">
-            <div className="xp-paint-toolbar">
-              <button className={paintTool === "pencil" ? "active" : ""} onClick={() => setPaintTool("pencil")}><PenTool size={15} /> Pencil</button>
-              <button className={paintTool === "eraser" ? "active" : ""} onClick={() => setPaintTool("eraser")}>Eraser</button>
-              <label>Size <input type="range" min="1" max="18" value={paintSize} onChange={(e) => setPaintSize(Number(e.target.value))} /></label>
-              <button onClick={clearPaint}>Clear</button>
-              <button onClick={savePaint}>Save PNG</button>
-            </div>
-            <div className="xp-paint-workspace">
-              <div className="xp-paint-tools">
-                {["#000000", "#ffffff", "#ff0000", "#ffcc00", "#00a651", "#0066ff", "#7a2cbf", "#ff7a00"].map((color) => <button key={color} aria-label={`Color ${color}`} className={paintColor === color ? "selected" : ""} style={{ background: color }} onClick={() => { setPaintColor(color); setPaintTool("pencil"); }} />)}
-              </div>
-              <div className="xp-canvas-frame">
-                <canvas
-                  ref={(node) => { paintCanvasRef.current = node; if (node && !node.dataset.ready) { const ctx = node.getContext("2d"); if (ctx) { ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, node.width, node.height); } node.dataset.ready = "1"; } }}
-                  width={720}
-                  height={440}
-                  onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); paintPointer(event, true); }}
-                  onPointerMove={(event) => paintPointer(event)}
-                  onPointerUp={() => { paintingRef.current = false; }}
-                  onPointerCancel={() => { paintingRef.current = false; }}
-                />
-              </div>
-            </div>
-            <div className="xp-paint-status">Draw something for Defender :) · Export stays on your device.</div>
-          </div>
-        );
-
-      case "media":
-        return (
-          <div className="xp-page xp-media-page">
-            <div className="xp-media-top">
-              <div className={`xp-visualizer ${mediaPlaying ? "playing" : ""}`}>
-                {Array.from({ length: 22 }).map((_, i) => <i key={i} style={{ animationDelay: `${(i % 7) * .08}s` }} />)}
-                <div className="xp-now-playing"><small>NOW PLAYING</small><strong>{mediaTracks[selectedTrack].title}</strong><span>{mediaTracks[selectedTrack].artist}</span></div>
-              </div>
-              <div className="xp-media-info"><h2>{mediaTracks[selectedTrack].title}</h2><p>{mediaTracks[selectedTrack].body}</p><div className="xp-media-controls"><button onClick={() => setSelectedTrack((selectedTrack - 1 + mediaTracks.length) % mediaTracks.length)}>◀◀</button><button className="play" onClick={() => { setMediaPlaying((v) => !v); playSound("toggle"); }}>{mediaPlaying ? "❚❚" : "▶"}</button><button onClick={() => setSelectedTrack((selectedTrack + 1) % mediaTracks.length)}>▶▶</button></div></div>
-            </div>
-            <div className="xp-playlist"><div className="xp-playlist-head"><b>Defender's Greatest Hits</b><span>{mediaTracks.length} tracks · no video required</span></div>{mediaTracks.map((track, index) => <button key={track.title} className={selectedTrack === index ? "active" : ""} onClick={() => { setSelectedTrack(index); setMediaPlaying(true); }}><span>{String(index + 1).padStart(2, "0")}</span><div><b>{track.title}</b><small>{track.artist}</small></div><em>Portfolio</em></button>)}</div>
-          </div>
-        );
-
-      case "browser":
-        return (
-          <div className="xp-page xp-browser-page">
-            <div className="xp-ie-toolbar">
-              <button onClick={() => setBrowserPage("home")} title="Home"><Home size={17} /></button>
-              <button onClick={() => navigateBrowser(browserInput)} title="Refresh"><RefreshCw size={17} /></button>
-              <div className="xp-ie-address"><span>Address</span><input value={browserInput} onChange={(e) => setBrowserInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && navigateBrowser()} /></div>
-              <button className="xp-ie-go" onClick={() => navigateBrowser()}>Go</button>
-            </div>
-            <div className="xp-ie-status"><Globe2 size={14} /> Internet</div>
-            <div className="xp-ie-content">
-              {browserPage === "home" && (
-                <div className="xp-ie-home">
-                  <div className="xp-ie-logo"><Globe2 size={54} /><div><strong>Internet Explorer</strong><span>Defender Edition</span></div></div>
-                  <h2>Where do you want to go today?</h2>
-                  <p>This is a tiny, deliberately fake slice of the early web living inside my portfolio.</p>
-                  <div className="xp-ie-links">
-                    <button onClick={() => navigateBrowser(profile.portfolio)}><Globe2 size={22} /><span><b>Built by Defender</b><small>Portfolio home</small></span></button>
-                    <button onClick={() => navigateBrowser("https://github.com/DefenderWidi")}><Github size={22} /><span><b>GitHub</b><small>Code & repositories</small></span></button>
-                    <button onClick={() => navigateBrowser(profile.linkedin)}><Linkedin size={22} /><span><b>LinkedIn</b><small>Professional profile</small></span></button>
-                    <button onClick={() => launchApp("projects")}><FolderOpen size={22} /><span><b>Local Projects</b><small>Open without the internet</small></span></button>
-                  </div>
-                </div>
-              )}
-              {browserPage === "portfolio" && (
-                <div className="xp-webpage">
-                  <span className="xp-web-badge">builtbydefender.vercel.app</span>
-                  <h1>Defender builds useful digital systems.</h1>
-                  <p>Software development, web applications, IoT systems, and AI — presented from inside a Windows XP machine because normal portfolio tabs were not fun enough.</p>
-                  <div className="xp-web-grid">
-                    {projects.slice(0, 4).map((project) => <button key={project.title} onClick={() => launchApp("projects")}><b>{project.title}</b><span>{project.tag}</span></button>)}
-                  </div>
-                  <XPButton href={profile.portfolio} primary><ExternalLink size={14} /> Open real website</XPButton>
-                </div>
-              )}
-              {browserPage === "github" && (
-                <div className="xp-webpage xp-web-terminal"><span className="xp-web-badge">github.com/DefenderWidi</span><h1>&gt; code repositories_</h1><p>Source code, experiments, dashboards, and things that probably started with “what if I build this?”</p><XPButton href="https://github.com/DefenderWidi" primary><Github size={14} /> Visit real GitHub</XPButton></div>
-              )}
-              {browserPage === "linkedin" && (
-                <div className="xp-webpage"><span className="xp-web-badge">linkedin.com/in/defenderwidi</span><h1>Defender Artha Widiprasetyo</h1><p>Computer Engineering Graduate · Software · Web · IoT · AI</p><XPButton href={profile.linkedin} primary><Linkedin size={14} /> Open real LinkedIn</XPButton></div>
-              )}
-              {browserPage === "offline" && (
-                <div className="xp-ie-error"><Globe2 size={56} /><h2>The page cannot be displayed</h2><p>Very authentic, right? This fake browser only knows a few Defender-approved destinations.</p><button className="xp-action xp-action-primary" onClick={() => setBrowserPage("home")}>Back to Home</button></div>
-              )}
-            </div>
           </div>
         );
 
@@ -1445,11 +1275,11 @@ LinkedIn: linkedin.com/in/defenderwidi`,
         return (
           <div className="xp-page xp-notepad-page">
             <div className="xp-notepad-toolbar">
-              <button onClick={() => openNotepadDocument("README.txt")}>README.txt</button>
-              <button onClick={() => openNotepadDocument("skills.txt")}>skills.txt</button>
-              <button onClick={() => openNotepadDocument("hire_me.txt")}>hire_me.txt</button>
+              <button onClick={() => openNotepadDocument("PROFILE.txt")}>PROFILE.txt</button>
+              <button onClick={() => openNotepadDocument("SKILLS.txt")}>SKILLS.txt</button>
+              <button onClick={() => openNotepadDocument("CONTACT.txt")}>CONTACT.txt</button>
               <span />
-              <button onClick={() => showNotification("Notepad", `${noteFile} saved in temporary portfolio memory.`)}>Save</button>
+              <button onClick={() => showNotification("Notepad", `${noteFile} saved in this session.`)}>Save</button>
             </div>
             <div className="xp-notepad-filename">{noteFile} - Notepad</div>
             <textarea value={noteText} onChange={(event) => setNoteText(event.target.value)} spellCheck={false} aria-label="Notepad text editor" />
@@ -1546,7 +1376,7 @@ LinkedIn: linkedin.com/in/defenderwidi`,
       <div className="xp-hill xp-hill-front" />
 
       <div className="xp-desktop-grid" aria-label="Desktop shortcuts">
-        {appList.filter((app) => !["browser", "recycle", "notepad", "cmd", "minesweeper", "paint", "media", "display", "pictureviewer"].includes(app.id)).map((app) => {
+        {appList.filter((app) => !["recycle", "notepad", "cmd", "minesweeper", "display", "pictureviewer"].includes(app.id)).map((app) => {
           const Icon = app.icon;
           return (
             <button key={app.id} className="xp-desktop-icon" onDoubleClick={() => launchApp(app.id)} onClick={() => launchApp(app.id)}>
@@ -1558,15 +1388,45 @@ LinkedIn: linkedin.com/in/defenderwidi`,
       </div>
 
       <div className="xp-desktop-specials">
-        <button className="xp-desktop-icon" onClick={() => launchApp("browser")} onDoubleClick={() => launchApp("browser")}><span className="xp-desktop-icon-art app-browser"><Globe2 size={30} /></span><span>Internet Explorer</span></button>
         <button className="xp-desktop-icon" onClick={() => launchApp("recycle")} onDoubleClick={() => launchApp("recycle")}><span className="xp-desktop-icon-art app-recycle"><Recycle size={30} /></span><span>Recycle Bin</span></button>
       </div>
 
       <div className="xp-desktop-note">
         <span>PORTFOLIO.EXE</span>
         <strong>Defender’s Desktop</strong>
-        <small>Tip: open an icon, move the windows around, or use Start.</small>
+        <small>Open an icon or use Start to explore.</small>
       </div>
+
+      <aside className="xp-gallery-widget" aria-label="Career photo highlights" onMouseDown={(e) => e.stopPropagation()}>
+        <div className="xp-gallery-widget-head">
+          <div><span>MY PICTURES</span><strong>Career Snapshots</strong></div>
+          <button title="Open My Pictures" onClick={() => { setComputerPath("pictures"); launchApp("computer"); }}><FolderOpen size={15} /></button>
+        </div>
+        <div className="xp-gallery-widget-stage">
+          <AnimatePresence mode="wait">
+            <motion.button
+              key={galleryItems[galleryWidgetIndex].id}
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -12 }}
+              transition={{ duration: .35 }}
+              onClick={() => openPhoto(galleryItems[galleryWidgetIndex])}
+              title="Open photo"
+            >
+              <img src={galleryItems[galleryWidgetIndex].src} alt={galleryItems[galleryWidgetIndex].title} />
+            </motion.button>
+          </AnimatePresence>
+        </div>
+        <div className="xp-gallery-widget-copy">
+          <strong>{galleryItems[galleryWidgetIndex].title}</strong>
+          <span>{galleryItems[galleryWidgetIndex].caption}</span>
+        </div>
+        <div className="xp-gallery-widget-nav">
+          <button aria-label="Previous photo" onClick={() => setGalleryWidgetIndex((galleryWidgetIndex - 1 + galleryItems.length) % galleryItems.length)}>‹</button>
+          <div>{galleryItems.map((item, index) => <button key={item.id} aria-label={`Show ${item.title}`} className={index === galleryWidgetIndex ? "active" : ""} onClick={() => setGalleryWidgetIndex(index)} />)}</div>
+          <button aria-label="Next photo" onClick={() => setGalleryWidgetIndex((galleryWidgetIndex + 1) % galleryItems.length)}>›</button>
+        </div>
+      </aside>
 
       {(Object.entries(windows) as [AppId, WindowState][]).map(([id, state]) => {
         if (!state.open || state.minimized) return null;
@@ -1651,7 +1511,6 @@ LinkedIn: linkedin.com/in/defenderwidi`,
             <button onClick={() => { showNotification("Desktop refreshed", "Everything is still exactly where you left it."); setContextMenu(null); }}><RefreshCw size={13} /> Refresh</button>
             <div className="xp-context-sep" />
             <button className="disabled" disabled>Paste</button>
-            <button onClick={() => { launchApp("browser"); setContextMenu(null); }}>New Internet Shortcut</button>
             <div className="xp-context-sep" />
             <button onClick={() => { launchApp("cmd"); setContextMenu(null); }}><Code2 size={13} /> Open Command Prompt</button>
             <button onClick={() => { setScreensaver(true); setContextMenu(null); }}><Monitor size={13} /> Start Screensaver</button>
@@ -1716,7 +1575,6 @@ LinkedIn: linkedin.com/in/defenderwidi`,
         </button>
         <div className="xp-task-divider" />
         <div className="xp-quick-launch">
-          <button title="Internet Explorer" onClick={() => launchApp("browser")}><Globe2 size={17} /></button>
           <button title="Command Prompt" onClick={() => launchApp("cmd")}><Code2 size={17} /></button>
           <button title="Show Desktop" onClick={minimizeAll}><Monitor size={17} /></button>
         </div>
@@ -1735,7 +1593,7 @@ LinkedIn: linkedin.com/in/defenderwidi`,
 }
 
 const startDescriptions: Record<AppId, string> = {
-  profile: "Profile and quick stats",
+  profile: "Professional profile & highlights",
   projects: "Software, IoT, AI & web",
   experience: "Work history",
   skills: "Tools and technologies",
@@ -1743,16 +1601,13 @@ const startDescriptions: Record<AppId, string> = {
   awards: "Honors and competitions",
   writing: "Articles and copywriting",
   contact: "Email and social links",
-  browser: "A tiny fake internet",
   recycle: "Deleted portfolio history",
-  notepad: "Editable notes & README",
-  cmd: "Portfolio command line",
-  minesweeper: "Classic XP distraction",
-  computer: "Explorer & evidence archive",
-  pictureviewer: "Photo & evidence viewer",
+  notepad: "Profile, skills & contact notes",
+  cmd: "Interactive command line",
+  minesweeper: "Classic Windows XP game",
+  computer: "Career files & photo archive",
+  pictureviewer: "Photo viewer",
   display: "Themes, wallpaper & saver",
-  paint: "Draw and export PNG",
-  media: "Interactive portfolio playlist",
 };
 
 const styles = String.raw`
@@ -1792,7 +1647,6 @@ const styles = String.raw`
   .app-awards { background:linear-gradient(#ffe765,#f0a20c); color:#8a5700; border-radius:50%; }
   .app-writing { background:linear-gradient(#b183e8,#6a42aa); border-radius:5px; }
   .app-contact { background:linear-gradient(#74b9ff,#2473c7); border-radius:6px; }
-  .app-browser { background:radial-gradient(circle at 40% 40%,#9fe6ff 0 22%,#1f77d7 25% 60%,#0b43a0 62%); border-radius:50%; }
   .app-recycle { background:linear-gradient(#f8fbff,#bed5e8); color:#3b698c; border-radius:4px; }
   .app-notepad { background:linear-gradient(#fff,#e9edf2); color:#2456a6; border-radius:3px; }
   .app-cmd { background:linear-gradient(#303030,#050505); color:#f2f2f2; border-radius:3px; }
@@ -1802,6 +1656,24 @@ const styles = String.raw`
   .xp-desktop-note span { display:block; font-size:10px; letter-spacing:.2em; opacity:.8; }
   .xp-desktop-note strong { display:block; font-size:26px; margin-top:4px; }
   .xp-desktop-note small { display:block; font-size:11px; margin-top:5px; opacity:.9; }
+
+
+  .xp-gallery-widget { position:absolute; z-index:4; right:26px; top:112px; width:244px; overflow:hidden; color:#222; background:#ece9d8; border:2px solid #0b54db; border-radius:7px 7px 3px 3px; box-shadow:0 7px 18px rgba(0,0,0,.24), inset 0 0 0 1px #5d91ef; user-select:none; }
+  .xp-gallery-widget-head { min-height:34px; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:5px 6px 5px 8px; color:white; background:linear-gradient(180deg,#2b7bff 0%,#1260e7 48%,#0951d5 86%,#397cff 100%); text-shadow:1px 1px #0d3680; }
+  .xp-gallery-widget-head span { display:block; font-size:7px; font-weight:800; letter-spacing:.13em; opacity:.82; }
+  .xp-gallery-widget-head strong { display:block; margin-top:1px; font-size:11px; }
+  .xp-gallery-widget-head > button { width:24px; height:23px; display:grid; place-items:center; padding:0; color:white; background:linear-gradient(#5e9bff,#1c63de); border:1px solid white; border-radius:3px; cursor:pointer; }
+  .xp-gallery-widget-stage { height:132px; margin:7px 7px 0; overflow:hidden; background:#1c1c1c; border:1px solid #8e8e88; box-shadow:inset 1px 1px 2px rgba(0,0,0,.35); }
+  .xp-gallery-widget-stage > button { width:100%; height:100%; display:block; padding:0; border:0; background:#1a1a1a; cursor:pointer; }
+  .xp-gallery-widget-stage img { width:100%; height:100%; display:block; object-fit:cover; }
+  .xp-gallery-widget-copy { min-height:63px; padding:7px 9px 5px; background:#fff; border-top:1px solid #c9c7bc; }
+  .xp-gallery-widget-copy strong { display:block; overflow:hidden; color:#174a8e; font-size:10px; line-height:1.3; white-space:nowrap; text-overflow:ellipsis; }
+  .xp-gallery-widget-copy span { display:-webkit-box; margin-top:3px; overflow:hidden; color:#666; font-size:8.5px; line-height:1.35; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+  .xp-gallery-widget-nav { height:29px; display:grid; grid-template-columns:28px 1fr 28px; align-items:center; gap:4px; padding:3px 5px; background:#ece9d8; border-top:1px solid #c7c4b8; }
+  .xp-gallery-widget-nav > button { height:21px; padding:0; border:1px solid #8d8d86; background:linear-gradient(#fff,#dfddd3); color:#1b3762; font-size:17px; line-height:17px; cursor:pointer; }
+  .xp-gallery-widget-nav > div { display:flex; justify-content:center; gap:3px; overflow:hidden; }
+  .xp-gallery-widget-nav > div button { width:5px; height:5px; flex:0 0 5px; padding:0; border:0; border-radius:50%; background:#a9a9a2; cursor:pointer; }
+  .xp-gallery-widget-nav > div button.active { background:#1f65c7; box-shadow:0 0 0 1px #fff, 0 0 0 2px #5d83b7; }
 
   .xp-window { position:absolute; min-width:470px; min-height:330px; display:flex; flex-direction:column; background:#ece9d8; border:3px solid #0b54db; border-radius:8px 8px 3px 3px; box-shadow:0 10px 28px rgba(0,0,0,.38), inset 0 0 0 1px #4f8cff; overflow:hidden; }
   .xp-window-max { inset:0 0 40px 0 !important; width:auto !important; height:auto !important; border-radius:0; }
@@ -2000,41 +1872,6 @@ const styles = String.raw`
   .xp-balloon p { margin:4px 0 0; color:#4b4b4b; font-size:10px; line-height:1.45; }
   .xp-balloon-close { position:absolute; right:5px; top:5px; width:17px; height:17px; display:grid; place-items:center; padding:0; border:1px solid #aaa; background:#f6f2dd; cursor:pointer; }
 
-  .xp-browser-page { min-height:100%; height:100%; padding:0; background:#fff; }
-  .xp-ie-toolbar { min-height:39px; display:flex; align-items:center; gap:5px; padding:5px 7px; background:#ece9d8; border-bottom:1px solid #aaa69a; }
-  .xp-ie-toolbar > button { width:28px; height:27px; display:grid; place-items:center; border:1px solid #aaa69a; background:linear-gradient(#fff,#e5e2d7); cursor:pointer; }
-  .xp-ie-address { min-width:0; flex:1; height:27px; display:flex; align-items:center; background:white; border:1px inset #a8a8a0; }
-  .xp-ie-address span { height:100%; display:flex; align-items:center; padding:0 7px; background:#f0eee5; border-right:1px solid #ccc; font-size:9px; }
-  .xp-ie-address input { min-width:0; flex:1; height:100%; padding:0 7px; border:0; outline:0; font-size:10px; }
-  .xp-ie-toolbar .xp-ie-go { width:auto; padding:0 9px; color:#1c5b1c; font-weight:800; }
-  .xp-ie-status { height:23px; display:flex; align-items:center; justify-content:flex-end; gap:5px; padding:0 7px; color:#555; background:#f4f2e9; border-bottom:1px solid #c1beb3; font-size:9px; }
-  .xp-ie-content { min-height:calc(100% - 62px); height:calc(100% - 62px); overflow:auto; user-select:text; background:#fff; }
-  .xp-ie-home { min-height:100%; padding:42px 9%; background:radial-gradient(circle at 80% 10%,#d5eaff 0,transparent 30%),linear-gradient(#fff,#f2f7fd); }
-  .xp-ie-logo { display:flex; align-items:center; gap:16px; color:#176ac1; }
-  .xp-ie-logo strong { display:block; font:700 27px Arial,sans-serif; letter-spacing:-1px; }
-  .xp-ie-logo span { display:block; margin-top:2px; color:#777; font-size:10px; }
-  .xp-ie-home h2 { margin:25px 0 6px; color:#1f4b81; font:700 20px Arial,sans-serif; }
-  .xp-ie-home > p { color:#666; font-size:11px; line-height:1.6; }
-  .xp-ie-links { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:22px; }
-  .xp-ie-links button { display:flex; align-items:center; gap:10px; padding:12px; color:#174f96; background:#fff; border:1px solid #b8cbe4; text-align:left; cursor:pointer; }
-  .xp-ie-links button:hover { background:#eaf3ff; }
-  .xp-ie-links b, .xp-ie-links small { display:block; }
-  .xp-ie-links small { margin-top:2px; color:#777; font-size:9px; }
-  .xp-webpage { min-height:100%; padding:48px 10%; color:#26384a; background:linear-gradient(135deg,#f8fbff,#fff); }
-  .xp-webpage h1 { max-width:700px; margin:12px 0; color:#173d70; font:700 32px Arial,sans-serif; letter-spacing:-1px; }
-  .xp-webpage p { max-width:720px; color:#56616c; font-size:12px; line-height:1.7; }
-  .xp-web-badge { display:inline-block; padding:4px 7px; color:#315f96; background:#e8f2ff; border:1px solid #aac5e6; font-size:9px; font-weight:700; }
-  .xp-web-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:20px 0; }
-  .xp-web-grid button { padding:12px; background:white; border:1px solid #c9d8e9; text-align:left; cursor:pointer; }
-  .xp-web-grid b, .xp-web-grid span { display:block; }
-  .xp-web-grid b { color:#194f93; font-size:11px; }
-  .xp-web-grid span { margin-top:4px; color:#777; font-size:9px; }
-  .xp-web-terminal { color:#d8ffd9; background:#101b13; }
-  .xp-web-terminal h1, .xp-web-terminal p { color:#c4f5c7; font-family:"Courier New",monospace; }
-  .xp-ie-error { min-height:100%; display:grid; place-items:center; align-content:center; padding:30px; text-align:center; color:#555; }
-  .xp-ie-error svg { color:#6a86a7; }
-  .xp-ie-error h2 { margin:12px 0 3px; color:#333; font:700 18px Arial,sans-serif; }
-  .xp-ie-error p { max-width:430px; font-size:11px; line-height:1.5; }
 
   .xp-recycle-page { position:relative; }
   .xp-recycle-toolbar { grid-template-columns:1fr auto; margin-bottom:15px; }
@@ -2111,12 +1948,10 @@ const styles = String.raw`
   .xp-boot-footer { position:absolute; bottom:24px; color:#777; font-size:9px; }
 
 
-  /* === Defender XP v4: My Computer, Gallery, Display, Paint, Media Player === */
+  /* === Defender XP: My Computer, Gallery & Display Properties === */
   .app-computer { background:linear-gradient(145deg,#e7f2ff,#7aa8e8); color:#164d9b; border-radius:5px; }
   .app-pictureviewer { background:linear-gradient(145deg,#fff,#bdd8ff); color:#205ca9; border-radius:4px; }
   .app-display { background:linear-gradient(145deg,#c9d6e8,#5c789d); border-radius:5px; }
-  .app-paint { background:linear-gradient(145deg,#fff3d5,#e66552); color:#633; border-radius:4px; }
-  .app-media { background:linear-gradient(145deg,#353b78,#151a42); color:#8de8ff; border-radius:50%; }
 
   .xp-explorer-toolbar { display:grid; grid-template-columns:auto minmax(220px,1fr) auto; gap:7px; align-items:center; margin:-18px -18px 14px; padding:6px 8px; background:#f5f2e9; border-bottom:1px solid #bcb8aa; }
   .xp-computer-layout { display:grid; grid-template-columns:185px minmax(0,1fr); gap:14px; align-items:start; }
@@ -2128,10 +1963,9 @@ const styles = String.raw`
   .xp-computer-grid > button:hover, .xp-file-list-large > button:hover { background:#e6efff; border-color:#9eb9df; }
   .xp-computer-grid b, .xp-file-list-large b { display:block; color:#214e8e; font-size:12px; }
   .xp-computer-grid small, .xp-file-list-large small { display:block; margin-top:3px; color:#666; font-size:9.5px; line-height:1.4; }
-  .xp-drive-icon, .xp-folder-big, .xp-network-big { width:54px; height:45px; display:grid; place-items:center; flex:0 0 54px; font-weight:900; }
+  .xp-drive-icon, .xp-folder-big { width:54px; height:45px; display:grid; place-items:center; flex:0 0 54px; font-weight:900; }
   .xp-drive-icon { color:#fff; background:linear-gradient(#a8c6e8,#416b9e); border:2px solid #dcecff; box-shadow:0 2px 5px rgba(0,0,0,.2); }
   .xp-folder-big { color:#8c6500; background:linear-gradient(#ffe275,#e9b41e); border:1px solid #c99614; font-size:25px; }
-  .xp-network-big { color:#0a6aa6; background:radial-gradient(circle,#fff 28%,#7bd6ff 30%,#218fc8 63%,#175c88); border-radius:50%; font-size:25px; }
   .xp-file-list-large { display:grid; gap:4px; }
   .xp-file-list-large svg { color:#2b67ad; flex:0 0 auto; }
   .xp-gallery-note { margin:-3px 0 13px; padding:8px 10px; color:#5e5a32; background:#ffffdf; border:1px solid #ddd18a; font-size:10px; line-height:1.45; }
@@ -2146,7 +1980,6 @@ const styles = String.raw`
   .xp-thumb-card:hover { background:#e8f1ff; border-color:#88a8d6; }
   .xp-thumb-preview { height:125px; display:grid; place-items:center; background:#eee; border:1px solid #bbb; overflow:hidden; }
   .xp-thumb-preview img { width:100%; height:100%; object-fit:cover; }
-  .xp-photo-placeholder span { font-size:9px; font-weight:800; }
   .xp-thumb-card b { display:block; margin-top:7px; color:#1e4d8b; font-size:10.5px; }
   .xp-thumb-card small { display:block; margin-top:3px; color:#666; font-size:8.8px; line-height:1.35; }
   .xp-thumb-card code { display:block; margin-top:5px; padding:3px; overflow:hidden; color:#795d18; background:#fffbdc; font-size:7.5px; text-overflow:ellipsis; white-space:nowrap; }
@@ -2188,61 +2021,22 @@ const styles = String.raw`
   .xp-appearance-sample > div:last-child { padding:12px; }
   .xp-display-footer { display:flex; justify-content:flex-end; gap:6px; margin-top:10px; }
 
-  .xp-paint-page { display:flex; flex-direction:column; padding:0; background:#c0c0c0; }
-  .xp-paint-toolbar { min-height:38px; display:flex; flex-wrap:wrap; align-items:center; gap:5px; padding:5px 7px; background:#ece9d8; border-bottom:1px solid #999; }
-  .xp-paint-toolbar button { display:flex; align-items:center; gap:4px; padding:4px 7px; border:1px solid #888; background:linear-gradient(#fff,#ddd9cd); font-size:9px; cursor:pointer; }
-  .xp-paint-toolbar button.active { background:#d4e4ff; border-color:#316ac5; }
-  .xp-paint-toolbar label { display:flex; align-items:center; gap:5px; padding:0 5px; font-size:9px; }
-  .xp-paint-toolbar input { width:100px; }
-  .xp-paint-workspace { flex:1; min-height:0; display:grid; grid-template-columns:46px minmax(0,1fr); }
-  .xp-paint-tools { display:flex; flex-direction:column; align-items:center; gap:5px; padding:7px 5px; background:#ece9d8; border-right:1px solid #999; }
-  .xp-paint-tools button { width:27px; height:27px; padding:0; border:2px outset #ddd; cursor:pointer; }
-  .xp-paint-tools button.selected { outline:2px solid #1c62bd; }
-  .xp-canvas-frame { min-width:0; min-height:0; padding:12px; overflow:auto; background:#808080; }
-  .xp-canvas-frame canvas { display:block; width:min(720px,100%); height:auto; background:#fff; border:1px solid #222; cursor:crosshair; touch-action:none; box-shadow:2px 2px 0 #555; }
-  .xp-paint-status { padding:4px 7px; background:#ece9d8; border-top:1px solid #999; color:#555; font-size:8.5px; }
-
-  .xp-media-page { padding:0; color:#eaf7ff; background:#101629; }
-  .xp-media-top { display:grid; grid-template-columns:1.15fr .85fr; min-height:285px; }
-  .xp-visualizer { position:relative; display:flex; align-items:flex-end; justify-content:center; gap:4px; padding:25px 22px 30px; overflow:hidden; background:radial-gradient(circle at 50% 38%,#1a4f80,#0b1730 55%,#050a16); }
-  .xp-visualizer i { width:7px; height:22%; background:linear-gradient(#70eaff,#3f64ff,#6f2fcc); opacity:.45; transform-origin:bottom; }
-  .xp-visualizer.playing i { animation:xpMediaBars .55s ease-in-out infinite alternate; }
-  .xp-visualizer.playing i:nth-child(3n) { animation-duration:.72s; } .xp-visualizer.playing i:nth-child(4n) { animation-duration:.4s; }
-  @keyframes xpMediaBars { from { height:12%; opacity:.5; } to { height:76%; opacity:1; } }
-  .xp-now-playing { position:absolute; left:18px; right:18px; bottom:16px; padding:9px 11px; background:rgba(3,8,22,.72); border:1px solid rgba(112,220,255,.25); }
-  .xp-now-playing small { display:block; color:#57d9ff; font-size:7px; letter-spacing:.16em; }
-  .xp-now-playing strong { display:block; margin-top:3px; font-size:13px; }
-  .xp-now-playing span { display:block; margin-top:2px; color:#a7bdd2; font-size:8px; }
-  .xp-media-info { padding:28px 20px; background:linear-gradient(145deg,#18213b,#0d1222); border-left:1px solid #2e476d; }
-  .xp-media-info h2 { margin:0 0 8px; color:#73dfff; font-size:19px; }
-  .xp-media-info p { color:#c1cfdf; font-size:10px; line-height:1.6; }
-  .xp-media-controls { display:flex; align-items:center; gap:6px; margin-top:20px; }
-  .xp-media-controls button { width:34px; height:29px; color:#e9f6ff; background:linear-gradient(#324a71,#162441); border:1px solid #58759d; border-radius:4px; cursor:pointer; }
-  .xp-media-controls button.play { width:45px; height:40px; border-radius:50%; }
-  .xp-playlist { background:#f6f6f6; color:#222; }
-  .xp-playlist-head { display:flex; justify-content:space-between; padding:8px 10px; color:#204c7e; background:#dce8f6; border-bottom:1px solid #9eb3cc; font-size:9px; }
-  .xp-playlist > button { width:100%; display:grid; grid-template-columns:30px 1fr auto; align-items:center; gap:8px; padding:7px 10px; border:0; border-bottom:1px solid #ddd; background:#fff; text-align:left; cursor:pointer; }
-  .xp-playlist > button:hover, .xp-playlist > button.active { background:#dfeeff; }
-  .xp-playlist > button > span { color:#777; font-size:9px; }
-  .xp-playlist b { display:block; color:#224f80; font-size:10px; }
-  .xp-playlist small { display:block; margin-top:2px; color:#777; font-size:8px; }
-  .xp-playlist em { color:#999; font-size:8px; }
 
   /* Persisted XP themes */
-  .theme-olive .xp-titlebar { background:linear-gradient(180deg,#9aaa54,#6f8138 48%,#4f642c 88%,#8d9f4e); box-shadow:inset 0 1px 0 #c4cf8b, inset 0 -1px 0 #405022; }
+  .theme-olive .xp-titlebar, .theme-olive .xp-gallery-widget-head { background:linear-gradient(180deg,#9aaa54,#6f8138 48%,#4f642c 88%,#8d9f4e); box-shadow:inset 0 1px 0 #c4cf8b, inset 0 -1px 0 #405022; }
   .theme-olive .xp-window { border-color:#647630; box-shadow:0 10px 28px rgba(0,0,0,.38), inset 0 0 0 1px #91a653; }
   .theme-olive .xp-taskbar { background:linear-gradient(#82994c,#657d36 47%,#4b6229 53%,#6e873d); border-top-color:#aebc74; }
   .theme-olive .xp-start-head, .theme-olive .xp-start-footer { background:linear-gradient(#8ca34e,#5f762f); }
   .theme-olive .xp-tray { background:linear-gradient(#90a95e,#69833d); }
 
-  .theme-silver .xp-titlebar { color:#1f2634; text-shadow:none; background:linear-gradient(#e1e5ee,#b9c0cf 48%,#939dac 85%,#cfd5df); box-shadow:inset 0 1px #fff, inset 0 -1px #747d89; }
+  .theme-silver .xp-titlebar, .theme-silver .xp-gallery-widget-head { color:#1f2634; text-shadow:none; background:linear-gradient(#e1e5ee,#b9c0cf 48%,#939dac 85%,#cfd5df); box-shadow:inset 0 1px #fff, inset 0 -1px #747d89; }
   .theme-silver .xp-window { border-color:#8d96a6; box-shadow:0 10px 28px rgba(0,0,0,.38), inset 0 0 0 1px #ccd2dd; }
   .theme-silver .xp-window-controls button { background:linear-gradient(#d6dbe4,#8995a7); }
   .theme-silver .xp-taskbar { background:linear-gradient(#d5d8df,#abb2c0 47%,#878f9e 53%,#b5bbc6); border-top-color:#f1f3f7; }
   .theme-silver .xp-start-head, .theme-silver .xp-start-footer { background:linear-gradient(#cdd2dc,#919aa9); }
   .theme-silver .xp-tray { background:linear-gradient(#bac1cd,#929ba8); }
 
-  .theme-defender .xp-titlebar { background:linear-gradient(180deg,#4b5ab9,#323d92 45%,#211f67 84%,#5a3e99); box-shadow:inset 0 1px #8793e6, inset 0 -1px #16154d; }
+  .theme-defender .xp-titlebar, .theme-defender .xp-gallery-widget-head { background:linear-gradient(180deg,#4b5ab9,#323d92 45%,#211f67 84%,#5a3e99); box-shadow:inset 0 1px #8793e6, inset 0 -1px #16154d; }
   .theme-defender .xp-window { border-color:#2a2b7c; box-shadow:0 10px 28px rgba(0,0,0,.42), inset 0 0 0 1px #6357b7; }
   .theme-defender .xp-taskbar { background:linear-gradient(#4757b4,#35449a 45%,#242a71 53%,#4a378c); border-top-color:#7785d9; }
   .theme-defender .xp-start-head, .theme-defender .xp-start-footer { background:linear-gradient(#5a6cc8,#333b8d); }
@@ -2260,8 +2054,28 @@ const styles = String.raw`
   .wallpaper-midnight .xp-hill-back { background:linear-gradient(130deg,#1b3a39,#0a2428 65%,#07181f); opacity:.8; }
   .wallpaper-midnight .xp-hill-front { background:linear-gradient(145deg,#214c43,#0c2b2c 60%,#06181d); }
 
+  @media (max-width: 1120px) {
+    .xp-gallery-widget { right:10px; top:96px; width:196px; }
+    .xp-gallery-widget-stage { height:104px; }
+    .xp-gallery-widget-copy { min-height:44px; padding:6px 7px 5px; }
+    .xp-gallery-widget-copy strong { font-size:9px; }
+    .xp-gallery-widget-copy span { font-size:7.8px; -webkit-line-clamp:1; }
+  }
+
   @media (max-width: 820px) {
     .xp-desktop-note { display:none; }
+    .xp-gallery-widget { right:6px; top:96px; width:154px; border-width:1px; }
+    .xp-gallery-widget-head { min-height:28px; padding:4px 5px; }
+    .xp-gallery-widget-head span { display:none; }
+    .xp-gallery-widget-head strong { font-size:9px; margin:0; }
+    .xp-gallery-widget-head > button { width:21px; height:20px; }
+    .xp-gallery-widget-stage { height:82px; margin:5px 5px 0; }
+    .xp-gallery-widget-copy { min-height:32px; padding:5px 6px; }
+    .xp-gallery-widget-copy strong { font-size:8px; line-height:1.25; white-space:normal; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+    .xp-gallery-widget-copy span { display:none; }
+    .xp-gallery-widget-nav { height:24px; grid-template-columns:24px 1fr 24px; padding:2px 4px; }
+    .xp-gallery-widget-nav > button { height:18px; font-size:14px; }
+    .xp-gallery-widget-nav > div button { width:4px; height:4px; flex-basis:4px; }
     .xp-desktop-grid { left:10px; top:10px; grid-template-rows:repeat(4,80px); grid-auto-columns:78px; gap:5px; }
     .xp-desktop-icon { width:74px; min-height:73px; }
     .xp-desktop-icon-art { width:39px; height:39px; }
@@ -2298,9 +2112,7 @@ const styles = String.raw`
     .xp-tray svg:first-child { display:none; }
     .xp-quick-launch { display:none; }
     .xp-desktop-specials { right:6px; bottom:50px; grid-template-columns:72px; }
-    .xp-ie-links, .xp-web-grid, .xp-bin-list { grid-template-columns:1fr; }
-    .xp-ie-home, .xp-webpage { padding:26px 18px; }
-    .xp-ie-logo strong { font-size:21px; }
+    .xp-bin-list { grid-template-columns:1fr; }
     .xp-balloon { right:6px; width:min(285px,calc(100vw - 12px)); }
     .xp-bsod { padding:7vh 5vw; font-size:12px; }
     .xp-bsod p { margin-bottom:13px; }
@@ -2315,9 +2127,6 @@ const styles = String.raw`
     .xp-explorer-toolbar > button:last-child { display:none; }
     .xp-display-body { grid-template-columns:1fr; }
     .xp-monitor-preview { display:none; }
-    .xp-media-top { grid-template-columns:1fr; }
-    .xp-media-info { border-left:0; border-top:1px solid #2e476d; padding:18px; }
-    .xp-paint-workspace { grid-template-columns:38px minmax(0,1fr); }
   }
 
   @media (max-width: 500px) {
